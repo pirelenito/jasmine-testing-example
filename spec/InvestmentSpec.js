@@ -37,7 +37,7 @@ describe("Investment", function() {
     });
 
     it("should be a bad investment", function() {
-      expect(investment.isGood()).toBeFalsy();
+      expect(investment).not.toBeAGoodInvestment();
     });
   });
 
@@ -51,7 +51,7 @@ describe("Investment", function() {
     });
 
     it("should be a good investment", function() {
-      expect(investment.isGood()).toBeTruthy();
+      expect(investment).toBeAGoodInvestment();
     });
   });
 
@@ -65,7 +65,7 @@ describe("Investment", function() {
     });
 
     it("should be a bad investment", function() {
-      expect(investment.isGood()).toBeFalsy();
+      expect(investment).not.toBeAGoodInvestment();
     });
   });
 
