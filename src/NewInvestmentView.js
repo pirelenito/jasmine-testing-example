@@ -78,4 +78,4 @@
 
 
   global.NewInvestmentView = NewInvestmentView;
-}(this, jQuery))
+})(this, jQuery);

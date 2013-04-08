@@ -8,4 +8,4 @@
     this.removeAttr('disabled');
     return this;
   }
-}(jQuery));
+})(jQuery);
