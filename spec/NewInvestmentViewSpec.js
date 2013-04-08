@@ -25,9 +25,7 @@ describe("NewInvestmentView", function() {
     expect(view.$el).toContain('input[type=number].new-investment-share-price');
   });
 
-  describe("on initialization", function() {
     itShouldBeAtTheDefaultState();
-  });
 
   describe("given the inputs are correctly filled", function() {
     beforeEach(function() {
