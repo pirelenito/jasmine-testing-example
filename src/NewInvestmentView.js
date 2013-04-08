@@ -52,9 +52,9 @@
     var that = this;
 
     if (canCreate.call(that)) {
-      that._$add.removeAttr('disabled');
+      that._$add.enableInput();
     } else {
-      that._$add.attr('disabled', 'disabled');
+      that._$add.disableInput();
     }
   }
 
@@ -73,7 +73,7 @@
     that._$stockSymbol.focus();
     that._$shares.val('0');
     that._$sharePrice.val('0');
-    that._$add.attr('disabled', 'disabled');
+    that._$add.disableInput();
   }
 
 
