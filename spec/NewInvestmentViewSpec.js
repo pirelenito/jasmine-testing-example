@@ -9,23 +9,23 @@ describe("NewInvestmentView", function() {
     });
   });
 
-  it("should expose a property with its DOM element", function() {
-    expect(view.$el).toExist();
-  });
+it("should expose a property with its DOM element", function() {
+  expect(view.$el).toExist();
+});
 
-  it("should allow the input of the stock symbol", function() {
-    expect(view.$el.find('.new-investment-stock-symbol')).toBe('input[type=text]');
-  });
+it("should allow the input of the stock symbol", function() {
+  expect(view.$el.find('.new-investment-stock-symbol')).toBe('input[type=text]');
+});
 
-  it("should allow the input of shares", function() {
-    expect(view.$el).toContainHtml('<input type="number" class="new-investment-shares" name="shares" value="0">');
-  });
+it("should allow the input of shares", function() {
+  expect(view.$el).toContainHtml('<input type="number" class="new-investment-shares" name="shares" value="0">');
+});
 
-  it("should allow the input of the share price", function() {
-    expect(view.$el).toContain('input[type=number].new-investment-share-price');
-  });
+it("should allow the input of the share price", function() {
+  expect(view.$el).toContain('input[type=number].new-investment-share-price');
+});
 
-    itShouldBeAtTheDefaultState();
+  itShouldBeAtTheDefaultState();
 
   describe("given the inputs are correctly filled", function() {
     beforeEach(function() {
@@ -49,8 +49,13 @@ describe("NewInvestmentView", function() {
         view.$el.find('input[type=submit]').click();
       });
 
-      it("should create a new investment with the data on the input", function() {
+      it("should create an investment from the inputs", function() {
         expect(callbackSpy).toHaveBeenCalled();
+
+        var newInvestment = callbackSpy.mostRecentCall.args[0];
+        expect(newInvestment.stock.symbol).toEqual('YHOO');
+        expect(newInvestment.shares).toEqual(100);
+        expect(newInvestment.sharePrice).toEqual(20);
       });
 
       it("should have submited the form, but prevented the default behavior", function() {

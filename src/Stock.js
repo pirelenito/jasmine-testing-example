@@ -1,5 +1,7 @@
 (function (global) {
-  function Stock (options) {
+  function Stock (params) {
+    var params = params || {};
+    this.symbol = params.symbol;
   };
 
   global.Stock = Stock;

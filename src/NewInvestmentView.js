@@ -44,7 +44,13 @@
   function submit () {
     var that = this;
 
-    that._callback();
+    var newInvestment = new Investment({
+      stock: new Stock({symbol: that._$stockSymbol.val()}),
+      shares: parseInt(that._$shares.val(), 10),
+      sharePrice: parseInt(that._$sharePrice.val(), 10)
+    });
+
+    that._callback(newInvestment);
     reset.call(that);
   }
 
