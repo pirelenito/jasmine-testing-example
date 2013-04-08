@@ -1,0 +1,46 @@
+<html>
+<head>
+  <title>Investment Tracker</title>
+
+  <script type="text/javascript" src="lib/jquery.js"></script>
+  <script type="text/javascript" src="src/Investment.js"></script>
+  <script type="text/javascript" src="src/Stock.js"></script>
+  <script type="text/javascript" src="src/NewInvestmentView.js"></script>
+
+  <script>
+    $(function () {
+      view = new NewInvestmentView({
+        id: 'new-investment'
+      });
+    });
+  </script>
+
+  <style type="text/css" media="screen">
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <form id="new-investment">
+    <h1>New investment</h1>
+    <label>
+      Symbol:
+      <input type="text" class="new-investment-stock-symbol" name="stockSymbol" value="">
+    </label>
+
+    <label>
+      Shares:
+      <input type="number" class="new-investment-shares" name="shares" value="0">
+    </label>
+
+    <label>
+      Share price:
+      <input type="number" class="new-investment-share-price" name="sharePrice" value="0">
+    </label>
+
+    <input type="submit" name="add" value="Add">
+  </form>
+</body>
+</html>

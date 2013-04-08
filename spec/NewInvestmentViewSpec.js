@@ -9,10 +9,12 @@ describe("NewInvestmentView", function() {
     });
   });
 
+  it("should expose a property with its DOM element", function() {
+    expect(view.$el).toExist();
+  });
+
   it("should allow the input of the stock symbol", function() {
-    var input = view.$el.find('.new-investment-stock-symbol');
-    expect(input).toBe('input[type=text]');
-    expect(input).not.toBeDisabled();
+    expect(view.$el.find('.new-investment-stock-symbol')).toBe('input[type=text]');
   });
 
   it("should allow the input of shares", function() {
@@ -23,8 +25,87 @@ describe("NewInvestmentView", function() {
     expect(view.$el).toContain('input[type=number].new-investment-share-price');
   });
 
-  it("should not allow the creation of an investment without any data", function() {
-    expect(view.$el.find('input[type=submit]')).toBeDisabled();
+  describe("on initialization", function() {
+    itShouldBeAtTheDefaultState();
   });
 
+  describe("given the inputs are correctly filled", function() {
+    beforeEach(function() {
+      view.$el.find('.new-investment-stock-symbol').val('YHOO').trigger('change');
+      view.$el.find('.new-investment-shares').val(100).trigger('change');
+      view.$el.find('.new-investment-share-price').val(20).trigger('change');
+    });
+
+    it("should allow to add", function() {
+      expect(view.$el.find('input[type=submit]')).not.toBeDisabled();
+    });
+
+    describe("when its add button is clicked", function() {
+      var callbackSpy;
+
+      beforeEach(function() {
+        callbackSpy = jasmine.createSpy('callback');
+        view.onCreate(callbackSpy);
+        view.$el.find('input[type=submit]').click();
+      });
+
+      it("should create a new investment with the data on the input", function() {
+        expect(callbackSpy).toHaveBeenCalled();
+      });
+
+      itShouldBeAtTheDefaultState();
+    });
+
+    describe("when the stock input is cleared", function() {
+      beforeEach(function() {
+        view.$el.find('.new-investment-stock-symbol').val('').trigger('change');
+      });
+
+      itShouldNotAllowToAdd();
+    });
+
+    describe("when the shares input is cleared", function() {
+      beforeEach(function() {
+        view.$el.find('.new-investment-shares').val('').trigger('change');
+      });
+
+      itShouldNotAllowToAdd();
+    });
+
+    describe("when the share price input is cleared", function() {
+      beforeEach(function() {
+        view.$el.find('.new-investment-share-price').val('').trigger('change');
+      });
+
+      itShouldNotAllowToAdd();
+    });
+  });
+
+  // shared specs
+
+  function itShouldNotAllowToAdd () {
+    it("should not allow to add", function() {
+      expect(view.$el.find('input[type=submit]')).toBeDisabled();
+    });
+  }
+
+  function itShouldBeAtTheDefaultState () {
+    it("should have an empty stock symbol", function() {
+      expect(view.$el.find('.new-investment-stock-symbol')).toHaveValue('');
+    });
+
+    it("should have its shares value to zero", function() {
+      expect(view.$el.find('.new-investment-shares')).toHaveValue('0');
+    });
+
+    it("should have its share price value to zero", function() {
+      expect(view.$el.find('.new-investment-share-price')).toHaveAttr('value', '0');
+    });
+
+    it("should have its stock symbol input on focus", function() {
+      expect(view.$el.find('.new-investment-stock-symbol')).toBeFocused();
+    });
+
+    itShouldNotAllowToAdd();
+  }
 });
