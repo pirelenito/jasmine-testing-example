@@ -44,13 +44,20 @@ describe("NewInvestmentView", function() {
       var callbackSpy;
 
       beforeEach(function() {
+        spyOnEvent(view.$el, 'submit');
         callbackSpy = jasmine.createSpy('callback');
         view.onCreate(callbackSpy);
+
         view.$el.find('input[type=submit]').click();
       });
 
       it("should create a new investment with the data on the input", function() {
         expect(callbackSpy).toHaveBeenCalled();
+      });
+
+      it("should have submited the form, but prevented the default behavior", function() {
+        expect('submit').toHaveBeenTriggeredOn(view.$el);
+        expect('submit').toHaveBeenPreventedOn(view.$el);
       });
 
       itShouldBeAtTheDefaultState();
