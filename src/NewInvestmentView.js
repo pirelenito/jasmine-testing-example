@@ -25,6 +25,10 @@
       var that = this;
 
       that._callback = callback;
+    },
+
+    getSymbol: function () {
+      return this._$stockSymbol.val()
     }
   };
 

@@ -101,7 +101,7 @@ it("should allow the input of the share price", function() {
 
   function itShouldBeAtTheDefaultState () {
     it("should have an empty stock symbol", function() {
-      expect(view.$el.find('.new-investment-stock-symbol')).toHaveValue('');
+      expect(view.getSymbol()).toEqual('');
     });
 
     it("should have its shares value to zero", function() {
