@@ -9,21 +9,21 @@ describe("NewInvestmentView", function() {
     });
   });
 
-it("should expose a property with its DOM element", function() {
-  expect(view.$el).toExist();
-});
+  it("should expose a property with its DOM element", function() {
+    expect(view.$el).toExist();
+  });
 
-it("should allow the input of the stock symbol", function() {
-  expect(view.$el.find('.new-investment-stock-symbol')).toBe('input[type=text]');
-});
+  it("should allow the input of the stock symbol", function() {
+    expect(view.$el.find('.new-investment-stock-symbol')).toBe('input[type=text]');
+  });
 
-it("should allow the input of shares", function() {
-  expect(view.$el).toContainHtml('<input type="number" class="new-investment-shares" name="shares" value="0">');
-});
+  it("should allow the input of shares", function() {
+    expect(view.$el).toContainHtml('<input type="number" class="new-investment-shares" name="shares" value="0">');
+  });
 
-it("should allow the input of the share price", function() {
-  expect(view.$el).toContain('input[type=number].new-investment-share-price');
-});
+  it("should allow the input of the share price", function() {
+    expect(view.$el).toContain('input[type=number].new-investment-share-price');
+  });
 
   itShouldBeAtTheDefaultState();
 
