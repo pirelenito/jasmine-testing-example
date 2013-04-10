@@ -27,7 +27,7 @@ describe("NewInvestmentView", function() {
 
   itShouldBeAtTheDefaultState();
 
-  describe("given the inputs are correctly filled", function() {
+  describe("with its inputs correctly filled", function() {
     beforeEach(function() {
       view.$el.find('.new-investment-stock-symbol').val('YHOO').trigger('change');
       view.$el.find('.new-investment-shares').val(100).trigger('change');
@@ -38,7 +38,7 @@ describe("NewInvestmentView", function() {
       expect(view.$el.find('input[type=submit]')).not.toBeDisabled();
     });
 
-    describe("when its add button is clicked", function() {
+    describe("and when its add button is clicked", function() {
       var callbackSpy;
 
       beforeEach(function() {
