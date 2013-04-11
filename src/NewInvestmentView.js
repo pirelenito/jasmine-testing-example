@@ -27,6 +27,19 @@
       that._callback = callback;
     },
 
+    create: function () {
+      var that = this;
+
+      var newInvestment = new Investment({
+        stock: new Stock({symbol: that._$stockSymbol.val()}),
+        shares: parseInt(that._$shares.val(), 10),
+        sharePrice: parseInt(that._$sharePrice.val(), 10)
+      });
+
+      invokeCallbacks.call(that, newInvestment);
+      return newInvestment;
+    },
+
     getSymbol: function () {
       return this._$stockSymbol.val()
     }
@@ -48,14 +61,14 @@
   function submit () {
     var that = this;
 
-    var newInvestment = new Investment({
-      stock: new Stock({symbol: that._$stockSymbol.val()}),
-      shares: parseInt(that._$shares.val(), 10),
-      sharePrice: parseInt(that._$sharePrice.val(), 10)
-    });
+    that.create();
+    reset.call(that);
+  }
+
+  function invokeCallbacks (newInvestment) {
+    var that = this;
 
     that._callback(newInvestment);
-    reset.call(that);
   }
 
   function updateAddButton () {
