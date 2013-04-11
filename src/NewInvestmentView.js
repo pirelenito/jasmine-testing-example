@@ -99,6 +99,5 @@
     that._$add.disableInput();
   }
 
-
   global.NewInvestmentView = NewInvestmentView;
 })(this, jQuery);
