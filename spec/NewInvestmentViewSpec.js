@@ -45,14 +45,14 @@ describe("NewInvestmentView", function() {
       expect(newInvestment.sharePrice).toEqual(20);
     });
 
-    describe("and when its add button is clicked", function() {
+    describe("when its add button is clicked", function() {
       beforeEach(function() {
         spyOnEvent(view.$el, 'submit');
 
         view.$el.find('input[type=submit]').click();
       });
 
-      it("should have submited the form, but prevented the default behavior", function() {
+      it("should submit the form", function() {
         expect('submit').toHaveBeenTriggeredOn(view.$el);
       });
     });
@@ -65,7 +65,7 @@ describe("NewInvestmentView", function() {
         view.$el.submit();
       });
 
-      it("should have prevented the default behavior", function() {
+      it("should prevent the event default behavior", function() {
         expect('submit').toHaveBeenPreventedOn(view.$el);
       });
 
@@ -78,18 +78,21 @@ describe("NewInvestmentView", function() {
 
     describe("and when an investment is created", function() {
       var callbackSpy;
-      var createdInvestment;
+      var investment;
 
       beforeEach(function() {
         callbackSpy = jasmine.createSpy('callback');
         view.onCreate(callbackSpy);
 
-        createdInvestment = view.create();
+        investment = view.create();
       });
 
       it("should invoke the 'onCreate' callback with the created investment", function() {
         expect(callbackSpy).toHaveBeenCalled();
-        expect(callbackSpy).toHaveBeenCalledWith(createdInvestment);
+        expect(callbackSpy).toHaveBeenCalledWith(investment);
+
+        expect(callbackSpy.wasCalled).toBeTruthy();
+        expect(callbackSpy.mostRecentCall.args[0]).toBe(investment);
       });
     });
 
