@@ -22,7 +22,7 @@
     var that = this;
     var symbol = params.symbol;
     var success = params.success;
-    var query = 'select * from yahoo.finance.quotes where symbol in (\''+symbol+'\')';
+    var query = 'select Ask, Change from yahoo.finance.quotes where symbol in (\''+symbol+'\')';
 
     $.ajax({
       url: 'http://query.yahooapis.com/v1/public/yql',
