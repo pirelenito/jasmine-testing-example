@@ -2,17 +2,20 @@
   function Stock (params) {
     var params = params || {};
     this.symbol = params.symbol;
+    this.sharePrice = params.sharePrice;
   };
 
   Stock.prototype = {
-    fetch: function () {
+    fetch: function (params) {
       var that = this;
+      var success = params.success || function () {}
 
       queryYahooFinance({
         symbol: that.symbol,
         success: function (stock) {
           that.sharePrice = stock.sharePrice;
           that.change = stock.change;
+          success(that);
         }
       });
     }
@@ -33,6 +36,7 @@
         q: query
       },
       success: function (data) {
+        console.log(data)
         success(parseStockData(data));
       }
     });

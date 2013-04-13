@@ -1,32 +1,39 @@
 describe("Stock", function() {
   var stock;
+  var originalSharePrice = 0;
 
   beforeEach(function() {
     stock = new Stock({
-      symbol: 'YHOO'
+      symbol: 'YHOO',
+      sharePrice: originalSharePrice
     })
   });
 
+  it("should have a share price", function() {
+    expect(stock.sharePrice).toEqual(originalSharePrice);
+  });
+
   describe("when fetched", function() {
+    var fetched = false;
+
     beforeEach(function() {
       runs(function() {
-        stock.fetch();
+        stock.fetch({
+          success: function () {
+            fetched = true;
+          }
+        });
       });
 
       waitsFor(function (argument) {
-        return stock.sharePrice;
-      }, 'error', 1000);
+        return fetched;
+      }, 'Timeout fetching stock data', 2000);
     });
 
-    it("should have a share price", function() {
+    it("should update its share price", function() {
       runs(function () {
         expect(stock.sharePrice).not.toBeUndefined();
-      })
-    });
-
-    it("should have a change", function() {
-      runs(function () {
-        expect(stock.change).not.toBeUndefined();
+        expect(stock.sharePrice).not.toEqual(originalSharePrice);
       })
     });
   });
