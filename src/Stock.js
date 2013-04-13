@@ -19,7 +19,7 @@
           q: 'select Ask from yahoo.finance.quotes where symbol in (\''+that.symbol+'\')'
         },
         success: function (data) {
-          that.sharePrice = parseFloat(data.query.results.quote.Ask, 10);
+          that.sharePrice = parseFloat(data.query.results.quote.Ask);
           success(that);
         }
       });
