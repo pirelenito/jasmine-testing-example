@@ -14,9 +14,8 @@ describe("Stock", function() {
       });
 
       waitsFor(function (argument) {
-        // is not undefined?
-        return !(stock.sharePrice === void 0);
-      }, 'error', 750);
+        return stock.sharePrice;
+      }, 'error', 1000);
     });
 
     it("should have a share price", function() {
