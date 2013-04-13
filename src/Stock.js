@@ -16,7 +16,7 @@
         data: {
           format: 'json',
           env: 'http://datatables.org/alltables.env',
-          q: 'select Ask from yahoo.finance.quotes where symbol in (\''+that.symbol+'\')'
+          q: 'select Ask from yahoo.finance.quotes where symbol=\''+that.symbol+'\''
         },
         success: function (data) {
           that.sharePrice = parseFloat(data.query.results.quote.Ask);
