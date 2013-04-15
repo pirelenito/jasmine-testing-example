@@ -9,6 +9,9 @@
     var that = this;
     var params = params || {};
     var success = params.success || function () {}
+    var query = 'select Ask ' +
+                'from yahoo.finance.quotes ' +
+                'where symbol=\'' + that.symbol + '\'';
 
     $.ajax({
       url: 'http://query.yahooapis.com/v1/public/yql',
@@ -16,21 +19,14 @@
       data: {
         format: 'json',
         env: 'http://datatables.org/alltables.env',
-        q: queryStringForSymbol(that.symbol)
+        q: query
       },
       success: function (data) {
-        console.log(data)
         that.sharePrice = parseFloat(data.query.results.quote.Ask);
         success(that);
       }
     });
   };
-
-  function queryStringForSymbol (symbol) {
-    return 'select Ask ' +
-           'from yahoo.finance.quotes ' +
-           'where symbol=\''+symbol+'\'';
-  }
 
   global.Stock = Stock;
 })(this);
