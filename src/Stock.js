@@ -22,6 +22,7 @@
         q: query
       },
       success: function (data) {
+        console.log(data)
         that.sharePrice = parseFloat(data.query.results.quote.Ask);
         success(that);
       }
