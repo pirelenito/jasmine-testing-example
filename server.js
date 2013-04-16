@@ -2,6 +2,9 @@ var express = require('express');
 var request = require('request');
 var app = express();
 
+// to run the specs
+app.use(express.static(__dirname));
+
 app.get('/stocks/:symbol', function (req, res) {
   var symbol = req.params.symbol;
   var query = 'select Ask ' +
