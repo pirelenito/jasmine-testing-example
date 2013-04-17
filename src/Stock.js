@@ -13,19 +13,9 @@
                 'from yahoo.finance.quotes ' +
                 'where symbol=\'' + that.symbol + '\'';
 
-    $.ajax({
-      url: 'http://query.yahooapis.com/v1/public/yql',
-      dataType: 'jsonp',
-      data: {
-        format: 'json',
-        env: 'http://datatables.org/alltables.env',
-        q: query
-      },
-      success: function (data) {
-        console.log(data)
-        that.sharePrice = parseFloat(data.query.results.quote.Ask);
-        success(that);
-      }
+    $.getJSON('http://0.0.0.0:8000/stocks/'+that.symbol, function (data) {
+      that.sharePrice = parseFloat(data.query.results.quote.Ask);
+      success(that);
     });
   };
 
