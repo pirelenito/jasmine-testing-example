@@ -7,19 +7,19 @@ describe("Stock 'Jasmine Stub'", function() {
 
   describe("when fetched", function() {
     beforeEach(function() {
-      spyOn($, 'ajax');
-
-      stock.fetch();
-
-      $.ajax.mostRecentCall.args[0].success({
-        query: {
-          results: {
-            quote: {
-              Ask: '20.13'
+      spyOn($, 'ajax').andCallFake(function(params) {
+        params.success({
+          query: {
+            results: {
+              quote: {
+                Ask: '20.13'
+              }
             }
           }
-        }
-      })
+        });
+      });
+
+      stock.fetch();
     });
 
     it("should update its share price", function() {
