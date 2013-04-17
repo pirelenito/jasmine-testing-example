@@ -14,7 +14,7 @@
                 'where symbol=\'' + that.symbol + '\'';
 
     $.getJSON('http://0.0.0.0:8000/stocks/'+that.symbol, function (data) {
-      that.sharePrice = parseFloat(data.query.results.quote.Ask);
+      that.sharePrice = data.sharePrice;
       success(that);
     });
   };

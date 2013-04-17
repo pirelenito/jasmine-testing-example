@@ -22,8 +22,11 @@ app.get('/stocks/:symbol', function (req, res) {
       q: query
     }
   }, function(error, response, body) {
-    res.send(response.body)
-  })
-})
+    var data = JSON.parse(response.body);
+    res.send({
+      sharePrice: data.query.results.quote.Ask
+    });
+  });
+});
 
 app.listen(8000);

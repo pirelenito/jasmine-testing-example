@@ -7,15 +7,9 @@ describe("Stock 'Jasmine Stub'", function() {
 
   describe("when fetched", function() {
     beforeEach(function() {
-      spyOn($, 'ajax').andCallFake(function(params) {
-        params.success({
-          query: {
-            results: {
-              quote: {
-                Ask: '20.13'
-              }
-            }
-          }
+      spyOn($, 'getJSON').andCallFake(function(url, callback) {
+        callback({
+          sharePrice: 20.13
         });
       });
 

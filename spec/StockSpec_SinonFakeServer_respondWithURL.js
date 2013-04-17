@@ -10,15 +10,16 @@ describe("Stock 'Sinon FakeServer with URL'", function() {
 
     beforeEach(function() {
       xhr = sinon.fakeServer.create();
-      xhr.respondWith('/stocks/YHOO', [200, { "Content-Type": "application/json" }, JSON.stringify({
-        query: {
-          results: {
-            quote: {
-              Ask: '20.13'
-            }
-          }
-        }
-      })]);
+      xhr.respondWith(
+        '/stocks/YHOO',
+        [
+          200,
+          { "Content-Type": "application/json" },
+          JSON.stringify({
+            sharePrice: 20.13
+          })
+        ]
+      );
 
       stock.fetch();
 
