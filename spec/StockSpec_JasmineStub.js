@@ -8,9 +8,7 @@ describe("Stock 'Jasmine Stub'", function() {
   describe("when fetched", function() {
     beforeEach(function() {
       spyOn($, 'getJSON').andCallFake(function(url, callback) {
-        callback({
-          sharePrice: 20.13
-        });
+        callback({ sharePrice: 20.13 });
       });
 
       stock.fetch();

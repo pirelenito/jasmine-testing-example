@@ -22,9 +22,7 @@ describe("Stock 'Sinon FakeXMLHttpRequest'", function() {
       fetchRequest.respond(
         200,
         { "Content-Type": "application/json" },
-        JSON.stringify({
-          sharePrice: 20.13
-        })
+        JSON.stringify({ sharePrice: 20.13 })
       );
     });
 
