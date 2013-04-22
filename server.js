@@ -1,9 +1,7 @@
 var express = require('express');
 var request = require('request');
-var app = express();
 
-// to run the specs
-app.use(express.static(__dirname));
+var app = express();
 
 app.get('/stocks/:symbol', function (req, res) {
   var symbol = req.params.symbol;
@@ -21,12 +19,15 @@ app.get('/stocks/:symbol', function (req, res) {
       env: 'http://datatables.org/alltables.env',
       q: query
     }
-  }, function(error, response, body) {
-    var data = JSON.parse(response.body);
+  }, function(_, _, body) {
+    var data = JSON.parse(body);
     res.send({
       sharePrice: data.query.results.quote.Ask
     });
   });
 });
+
+// Static server to run the specs
+app.use(express.static(__dirname));
 
 app.listen(8000);
