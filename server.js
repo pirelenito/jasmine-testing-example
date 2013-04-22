@@ -6,8 +6,8 @@ var app = express();
 app.get('/stocks/:symbol', function (req, res) {
   var symbol = req.params.symbol;
   var query = 'select Ask ' +
-                'from yahoo.finance.quotes ' +
-                'where symbol=\'' + symbol + '\'';
+              'from yahoo.finance.quotes ' +
+              'where symbol=\'' + symbol + '\'';
 
   res.setHeader('Content-Type', 'application/json');
 
