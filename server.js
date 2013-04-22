@@ -3,13 +3,19 @@ var request = require('request');
 
 var app = express();
 
-app.get('/stocks/:symbol', function (req, res) {
-  var symbol = req.params.symbol;
+app.get('/stocks/:symbol', function (request, response) {
+  fetchYahooFinance(request.params.symbol, function (data) {
+    response.setHeader('Content-Type', 'application/json');
+    response.send({
+      sharePrice: data.query.results.quote.Ask
+    });
+  });
+});
+
+function fetchYahooFinance (symbol, callback) {
   var query = 'select Ask ' +
               'from yahoo.finance.quotes ' +
               'where symbol=\'' + symbol + '\'';
-
-  res.setHeader('Content-Type', 'application/json');
 
   request({
     uri: 'http://query.yahooapis.com/v1/public/yql',
@@ -20,12 +26,9 @@ app.get('/stocks/:symbol', function (req, res) {
       q: query
     }
   }, function(_, _, body) {
-    var data = JSON.parse(body);
-    res.send({
-      sharePrice: data.query.results.quote.Ask
-    });
+    callback(JSON.parse(body));
   });
-});
+}
 
 // Static server to run the specs
 app.use(express.static(__dirname));
