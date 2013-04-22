@@ -9,11 +9,9 @@
     var that = this;
     var params = params || {};
     var success = params.success || function () {}
-    var query = 'select Ask ' +
-                'from yahoo.finance.quotes ' +
-                'where symbol=\'' + that.symbol + '\'';
+    var url = 'http://0.0.0.0:8000/stocks/'+that.symbol;
 
-    $.getJSON('http://0.0.0.0:8000/stocks/'+that.symbol, function (data) {
+    $.getJSON(url, function (data) {
       that.sharePrice = data.sharePrice;
       success(that);
     });
