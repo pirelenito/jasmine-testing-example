@@ -13,4 +13,4 @@ beforeEach(function() {
   });
 });
 
-jasmine.getFixtures().fixturesPath = path + 'spec/fixtures';
+jasmine.getFixtures().fixturesPath = 'spec/fixtures';
