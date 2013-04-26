@@ -40,9 +40,9 @@ describe("NewInvestmentView", function() {
 
     it("should be able to create an investment from the inputs", function() {
       var newInvestment = view.create();
-      expect(newInvestment.stock.symbol).toEqual('YHOO');
-      expect(newInvestment.shares).toEqual(100);
-      expect(newInvestment.sharePrice).toEqual(20);
+      expect(newInvestment.get('stock').get('symbol')).toEqual('YHOO');
+      expect(newInvestment.get('shares')).toEqual(100);
+      expect(newInvestment.get('sharePrice')).toEqual(20);
     });
 
     describe("when its add button is clicked", function() {

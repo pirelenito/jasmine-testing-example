@@ -1,22 +1,24 @@
 (function (global) {
 
-  function Investment (params) {
-    var params = params || {};
-    this.stock = params.stock;
-    this.shares = params.shares;
-    this.sharePrice = params.sharePrice;
-    this.cost = this.shares * this.sharePrice;
-  };
+  var Investment = Backbone.Model.extend({
+    initialize: function () {
+      this.set('cost', this.get('shares') * this.get('sharePrice'));
 
-  Investment.prototype = {
-    roi: function() {
-      return (this.stock.sharePrice - this.sharePrice) / this.sharePrice;
-    },
-
-    isGood: function(first_argument) {
-      return this.roi() > 0;
+      this.on('change:sharePrice', updateROI.bind(this));
+      this.on('change:roi', updateIsGood.bind(this));
+      this.get('stock').on('change:sharePrice', updateROI.bind(this));
     }
-  };
+  });
+
+  function updateROI () {
+    var sharePrice = this.get('sharePrice');
+    var stockSharePrice = this.get('stock').get('sharePrice');
+    this.set('roi', (stockSharePrice - sharePrice) / sharePrice);
+  }
+
+  function updateIsGood () {
+    this.set('isGood', this.get('roi') > 0);
+  }
 
   global.Investment = Investment;
 

@@ -8,7 +8,7 @@ beforeEach(function() {
         return 'Expected investment to be a '+ what +' investment';
       };
 
-      return investment.isGood();
+      return investment.get('isGood');
     }
   });
 });

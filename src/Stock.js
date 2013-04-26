@@ -1,9 +1,5 @@
 (function (global) {
-  function Stock (params) {
-    var params = params || {};
-    this.symbol = params.symbol;
-    this.sharePrice = params.sharePrice;
-  };
+  var Stock = Backbone.Model.extend();
 
   Stock.prototype.fetch = function(params) {
     var that = this;
