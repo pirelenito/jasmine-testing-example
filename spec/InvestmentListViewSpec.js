@@ -1,76 +1,92 @@
 describe("InvestmentListView", function() {
-  var firstInvestment, secondInvestment, thirdInvestment;
-  var firstInvestmentView, secondInvestmentView, thirdInvestmentView;
-  var collection, view;
+  var investment,
+      investmentView,
+      collection,
+      view;
 
   beforeEach(function() {
-    firstInvestment = new Backbone.Model();
-    secondInvestment = new Backbone.Model();
-    thirdInvestment = new Backbone.Model();
+    collection = {};
+    collection.each = sinon.stub();
 
-    firstInvestmentView = new Backbone.View({ el: '<li>first Investment</li>' });
-    secondInvestmentView = new Backbone.View({ el: '<li>second Investment</li>' });
-    thirdInvestmentView = new Backbone.View({ el: '<li>third Investment</li>' });
+    sinon.stub(InvestmentListView.prototype, 'listenTo')
 
-    stub = sinon.stub(window, 'InvestmentView');
-    stub.withArgs({ model: firstInvestment }).returns(firstInvestmentView);
-    stub.withArgs({ model: secondInvestment }).returns(secondInvestmentView);
-    stub.withArgs({ model: thirdInvestment }).returns(thirdInvestmentView);
-
-    collection = new Backbone.Collection([
-      firstInvestment,
-      secondInvestment
-    ]);
-
-    view = new InvestmentListView({
-      collection: collection
-    });
+    view = new InvestmentListView({ collection: collection });
   });
 
   afterEach(function() {
-    InvestmentView.restore();
+    InvestmentListView.prototype.listenTo.restore();
   });
 
-  it("should allow chaining calls to render", function() {
+  it("should add all investments of the collection", function() {
+    expect(collection.each).toHaveBeenCalledWith(view.addInvestment, view);
+  });
+
+  it("should add a investment to the list once it is add to the collection", function() {
+    expect(view.listenTo).toHaveBeenCalledWith(collection, 'add', view.addInvestment);
+  });
+
+  it("should remove a investment to from list once it is removed from to the collection", function() {
+    expect(view.listenTo).toHaveBeenCalledWith(collection, 'remove', view.removeInvestment);
+  });
+
+  it("should allow chained calls to the render function", function() {
     expect(view.render()).toBe(view);
   });
 
-  describe("when rendering", function() {
+  describe("when an investment is add", function() {
     beforeEach(function() {
-      sinon.spy(firstInvestmentView, 'render');
-      sinon.spy(secondInvestmentView, 'render');
-      view.render();
+      investment = { cid: 'fakeInvestment' };
+
+      investmentView = {};
+      investmentView.el = '<li>Investment</li>'
+      investmentView.remove = sinon.stub()
+      investmentView.render = sinon.stub().returns(investmentView);
+
+      stub = sinon.stub(window, 'InvestmentView');
+      stub.withArgs({ model: investment }).returns(investmentView);
+
+      view.addInvestment(investment);
     });
 
-    it("should render the investments", function() {
-      expect(firstInvestmentView.render).toHaveBeenCalled();
-      expect(view.$el).toContainHtml(firstInvestmentView.el);
-
-      expect(secondInvestmentView.render).toHaveBeenCalled();
-      expect(view.$el).toContainHtml(secondInvestmentView.el);
+    afterEach(function() {
+      InvestmentView.restore();
     });
 
-    describe("when add new investment is add to the collection", function() {
+    it("should not render the investment", function() {
+      expect(investmentView.render).not.toHaveBeenCalled();
+      expect(view.$el).not.toContainHtml(investmentView.el);
+    });
+
+    describe("and when it is rendered", function() {
       beforeEach(function() {
-        sinon.spy(thirdInvestmentView, 'render');
-        collection.add(thirdInvestment);
+        view.render();
       });
 
-      it("should render the new insvestment", function() {
-        expect(thirdInvestmentView.render).toHaveBeenCalled();
-        expect(view.$el).toContainHtml(thirdInvestmentView.el);
+      it("should render the investment", function() {
+        expect(investmentView.render).toHaveBeenCalled();
+        expect(view.$el).toContainHtml(investmentView.el);
+      });
+
+      describe("and when it is removed", function() {
+        beforeEach(function() {
+          view.removeInvestment(investment);
+        });
+
+        it("should have removed the rendered investment ", function() {
+          expect(investmentView.remove).toHaveBeenCalled();
+        });
       });
     });
 
-    describe("when a insvestment is removed from the list", function() {
+    describe("and when it is removed and then rendered", function() {
       beforeEach(function() {
-        sinon.spy(secondInvestmentView, 'remove');
-        collection.remove(secondInvestment);
+        view.removeInvestment(investment);
+        view.render();
       });
 
-      it("should remove the removed investment", function() {
-        expect(secondInvestmentView.remove).toHaveBeenCalled();
-        expect(view.$el).not.toContainHtml(secondInvestmentView.el);
+      it("should not render the investment", function() {
+        expect(investmentView.render).not.toHaveBeenCalled();
+        expect(view.$el).not.toContainHtml(investmentView.el);
       });
     });
   });
