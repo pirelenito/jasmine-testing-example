@@ -4,9 +4,9 @@
     initialize: function () {
       this.set('cost', this.get('shares') * this.get('sharePrice'));
 
-      this.on('change:sharePrice', updateROI.bind(this));
-      this.on('change:roi', updateIsGood.bind(this));
-      this.get('stock').on('change:sharePrice', updateROI.bind(this));
+      this.on('change:sharePrice', updateROI, this);
+      this.on('change:roi', updateIsGood, this);
+      this.listenTo(this.get('stock'), 'change:sharePrice', updateROI, this);
     }
   });
 
