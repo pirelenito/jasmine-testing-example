@@ -13,7 +13,7 @@ describe("Stock", function() {
     expect(stock.get('sharePrice')).toEqual(originalSharePrice);
   });
 
-  xdescribe("when fetched", function() {
+  describe("when fetched", function() {
     var xhr;
 
     beforeEach(function() {
@@ -39,8 +39,12 @@ describe("Stock", function() {
       xhr.restore();
     });
 
+    it("should have made a request with the stock symbol", function() {
+      expect(xhr.requests[0].url).toEqual('/stocks/YHOO');
+    });
+
     it("should update its share price", function() {
-      expect(stock.sharePrice).toEqual(20.13);
+      expect(stock.get('sharePrice')).toEqual(20.13);
     });
   });
 });
