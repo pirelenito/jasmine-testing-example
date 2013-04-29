@@ -11,16 +11,8 @@ describe("Investment", function() {
     });
   });
 
-  it("should be of a stock", function() {
-    expect(investment.get('stock')).toBe(stock);
-  });
-
-  it("should have the invested shares quantity", function() {
-    expect(investment.get('shares')).toEqual(100);
-  });
-
-  it("should have the share payed price", function() {
-    expect(investment.get('sharePrice')).toEqual(20);
+  it("should be a Backbone.Model", function() {
+    expect(investment).toEqual(jasmine.any(Backbone.Model));
   });
 
   it("should have a cost", function() {
