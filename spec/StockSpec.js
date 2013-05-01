@@ -2,9 +2,7 @@ describe("Stock", function() {
   var stock;
 
   beforeEach(function() {
-    stock = new Stock({
-      symbol: 'YHOO'
-    })
+    stock = new Stock({ symbol: 'YHOO' });
   });
 
   it("should be a Backbone.Model", function() {
@@ -12,7 +10,7 @@ describe("Stock", function() {
   });
 
   describe("sync", function() {
-    it("should use the stock symbol as the id when making requests", function() {
+    it("should use the stock symbol as the id", function() {
       expect(stock.idAttribute).toEqual('symbol');
     });
 
