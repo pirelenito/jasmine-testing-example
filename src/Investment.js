@@ -1,4 +1,4 @@
-(function (global) {
+(function (global, Backbone) {
 
   var Investment = Backbone.Model.extend({
     initialize: function () {
@@ -42,4 +42,4 @@
 
   global.Investment = Investment;
 
-})(this);
+})(this, Backbone);
