@@ -2,11 +2,15 @@ describe("NewInvestmentView", function() {
   var view;
 
   beforeEach(function() {
-    loadFixtures('NewInvestmentView.html');
+    // loadFixtures('NewInvestmentView.html');
 
     view = new NewInvestmentView({
       id: 'new-investment'
-    });
+    })
+
+    setFixtures(view.$el);
+
+    view.render();
   });
 
   it("should expose a property with its DOM element", function() {
@@ -82,7 +86,7 @@ describe("NewInvestmentView", function() {
 
       beforeEach(function() {
         callbackSpy = jasmine.createSpy('callback');
-        view.onCreate(callbackSpy);
+        view.on('create', callbackSpy);
 
         investment = view.create();
       });
@@ -131,7 +135,7 @@ describe("NewInvestmentView", function() {
 
   function itShouldBeAtTheDefaultState () {
     it("should have an empty stock symbol", function() {
-      expect(view.getSymbol()).toEqual('');
+      expect(view.$el.find('.new-investment-stock-symbol')).toHaveValue('');
     });
 
     it("should have its shares value to zero", function() {
