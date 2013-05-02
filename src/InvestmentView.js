@@ -15,6 +15,21 @@
       }));
       addStatusClass.call(this);
       return this;
+    },
+
+    show: function () {
+      this.$el.show();
+      return this;
+    },
+
+    hide: function () {
+      this.$el.hide();
+      return this;
+    },
+
+    setVisible: function (value) {
+      value ? this.show() : this.hide();
+      return this;
     }
   });
 

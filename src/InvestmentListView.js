@@ -25,8 +25,33 @@
     removeInvestment: function (model) {
       this._nestedViews[model.cid].remove();
       delete this._nestedViews[model.cid];
+    },
+
+    showGoodInvestments: function () {
+      this.collection.each(function (model) {
+        getView.call(this, model).setVisible(model.get('isGood'))
+      }, this);
+      return this;
+    },
+
+    showBadInvestments: function () {
+      this.collection.each(function (model) {
+        getView.call(this, model).setVisible(!model.get('isGood'))
+      }, this);
+      return this;
+    },
+
+    showAllInvestments: function () {
+      this.collection.each(function (model) {
+        getView.call(this, model).setVisible(true)
+      }, this);
+      return this;
     }
   });
+
+  function getView (model) {
+    return this._nestedViews[model.cid];
+  }
 
   function addAllInvestments (collection) {
     this.collection.each(this.addInvestment, this);

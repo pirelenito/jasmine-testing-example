@@ -15,6 +15,21 @@
       this.$el.html(this.formView.render().el);
       this.$el.append(this.listView.render().el);
       return this;
+    },
+
+    showGoodInvestments: function () {
+      this.listView.showGoodInvestments();
+      return this;
+    },
+
+    showBadInvestments: function () {
+      this.listView.showBadInvestments();
+      return this;
+    },
+
+    showAllInvestments: function () {
+      this.listView.showAllInvestments();
+      return this;
     }
   });
 
