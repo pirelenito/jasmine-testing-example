@@ -33,7 +33,7 @@
   var template = _.template([
     '<h1><%= symbol %><h1>',
     '<p><%= roi %><p>'
-  ].join('/n'));
+  ].join('\n'));
 
   global.InvestmentView = InvestmentView;
 
