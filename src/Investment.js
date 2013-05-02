@@ -1,6 +1,12 @@
 (function (global, Backbone) {
 
   var Investment = Backbone.Model.extend({
+    defaults: function () {
+      return {
+        'stock': new Stock()
+      }
+    },
+
     initialize: function () {
       createVirtualAttributes.call(this);
     }
