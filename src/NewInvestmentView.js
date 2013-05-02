@@ -8,9 +8,6 @@
       'change input': updateAddButton
     },
 
-    initialize: function () {
-    },
-
     render: function () {
       this.$el.html(this.template());
       $stockSymbol.call(this).focus();
@@ -19,15 +16,13 @@
     },
 
     create: function () {
-      var that = this;
-
       var newInvestment = new Investment({
         stock: new Stock({symbol: $stockSymbol.call(this).val()}),
         shares: parseInt($shares.call(this).val(), 10),
         sharePrice: parseInt($sharePrice.call(this).val(), 10)
       });
 
-      invokeCallbacks.call(that, newInvestment);
+      invokeCallbacks.call(this, newInvestment);
       return newInvestment;
     }
   });
@@ -35,11 +30,10 @@
   // private methods (invoke with 'call')
 
   function submit (event) {
-    var that = this;
     event.preventDefault();
 
-    that.create();
-    that.render();
+    this.create();
+    this.render();
   }
 
   function invokeCallbacks (newInvestment) {
@@ -47,9 +41,7 @@
   }
 
   function updateAddButton () {
-    var that = this;
-
-    if (canCreate.call(that)) {
+    if (canCreate.call(this)) {
       $add.call(this).enableInput();
     } else {
       $add.call(this).disableInput();
@@ -57,8 +49,6 @@
   }
 
   function canCreate () {
-    var that = this;
-
     return $stockSymbol.call(this).val().length > 0 &&
            parseInt($shares.call(this).val(), 10) &&
            parseInt($sharePrice.call(this).val(), 10);
