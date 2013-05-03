@@ -13,6 +13,10 @@ describe("NewInvestmentView", function() {
     view.render();
   });
 
+  it("should be a Backbone View", function() {
+    expect(view).toEqual(jasmine.any(Backbone.View));
+  });
+
   it("should expose a property with its DOM element", function() {
     expect(view.$el).toExist();
   });
