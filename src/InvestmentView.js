@@ -1,34 +1,29 @@
-(function (global, $) {
+(function (global, Backbone, _) {
 
   var InvestmentView = Backbone.View.extend({
     template: template,
+    className: 'investment',
+    tagName: 'li',
+    events: {
+      'click .destroy-investment': destroy
+    },
 
-    initialize: function (params) {
-      this.model.on('change', modelChanged, this);
+    initialize: function () {
+      this.listenTo(this.model, 'change', this.render, this);
+      this.listenTo(this.model, 'destroy', this.remove, this);
     },
 
     render: function () {
-      this._rendered = true;
       this.$el.html(template({
         symbol: this.model.get('stock').get('symbol'),
         roi: formatedRoi.call(this)
       }));
-      addStatusClass.call(this);
-      return this;
-    },
 
-    show: function () {
-      this.$el.show();
-      return this;
-    },
-
-    hide: function () {
-      this.$el.hide();
       return this;
     },
 
     setVisible: function (value) {
-      value ? this.show() : this.hide();
+      value ? this.$el.show() : this.$el.hide();
       return this;
     }
   });
@@ -37,19 +32,16 @@
     return (this.model.get('roi') * 100) + '%'
   }
 
-  function addStatusClass () {
-    this.$el.addClass(this.model.get('isGood') ? 'good-investment' : 'bad-investment');
-  }
-
-  function modelChanged () {
-    if (this._rendered) { this.render() };
+  function destroy () {
+    this.model.destroy();
   }
 
   var template = _.template([
     '<h1><%= symbol %><h1>',
-    '<p><%= roi %><p>'
+    '<p><%= roi %><p>',
+    '<button class="destroy-investment">destroy</button>'
   ].join('\n'));
 
   global.InvestmentView = InvestmentView;
 
-})(this, jQuery, Backbone);
+})(this, Backbone, _);
