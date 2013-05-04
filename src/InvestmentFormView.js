@@ -5,18 +5,11 @@
     tagName: 'form',
     events: {
       'change input': updateModel,
+      'submit': saveModel
     },
 
     initialize: function (params) {
       this.model = this.model || new Backbone.Model();
-      this.listenTo(this.model, 'change', function () {
-        console.log(arguments);
-      })
-    },
-
-    sharePrice: function () {
-      var el = this.$('.new-investment-share-price');
-      return el.val.apply(el, arguments);
     },
 
     render: function () {
@@ -29,7 +22,10 @@
     _(this.$el.serializeArray()).each(function (pair) {
       this.model.set(pair.name, pair.value);
     }.bind(this))
+  }
 
+  function saveModel () {
+    console.log(arguments)
   }
 
   function template () {
@@ -48,7 +44,7 @@
       '  <input type="number" class="new-investment-share-price" name="sharePrice" value="0">',
       '</label>',
       '<input type="submit" name="add" value="Add">'
-    ].join('/n');
+    ].join('\n');
   }
 
 
