@@ -2,8 +2,6 @@ describe("NewInvestmentView", function() {
   var view;
 
   beforeEach(function() {
-    // loadFixtures('NewInvestmentView.html');
-
     view = new NewInvestmentView({
       id: 'new-investment'
     })
