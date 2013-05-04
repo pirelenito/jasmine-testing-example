@@ -11,7 +11,6 @@
     render: function () {
       this.$el.html(this.template());
       $stockSymbol.call(this).focus();
-      updateAddButton.call(this);
       return this;
     },
 
@@ -85,7 +84,7 @@
       '  Share price:',
       '  <input type="number" class="new-investment-share-price" name="sharePrice" value="0">',
       '</label>',
-      '<input type="submit" name="add" value="Add">'
+      '<input type="submit" name="add" value="Add" disabled="disabled">'
     ].join('\n');
   }
 
