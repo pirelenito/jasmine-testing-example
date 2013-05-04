@@ -13,9 +13,7 @@
   });
 
   function createVirtualAttributes () {
-    this.on('change:sharePrice', updateCost, this);
-    this.on('change:shares', updateCost, this);
-
+    this.on('change:sharePrice change:shares', updateCost, this);
     this.on('change:roi', updateIsGood, this);
 
     this.on('change:sharePrice', updateROI, this);
