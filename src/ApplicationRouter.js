@@ -5,19 +5,23 @@
       'goodInvestments': goodInvestments,
       'badInvestments': badInvestments,
       'allInvestments': allInvestments
+    },
+
+    initialize: function (options) {
+      this.applicationView = options.applicationView;
     }
   });
 
   function goodInvestments () {
-    this.trigger('goodInvestments');
+    this.applicationView.showGoodInvestments();
   }
 
   function badInvestments () {
-    this.trigger('badInvestments');
+    this.applicationView.showBadInvestments();
   }
 
   function allInvestments () {
-    this.trigger('allInvestments');
+    this.applicationView.showAllInvestments();
   }
 
   global.ApplicationRouter = ApplicationRouter;

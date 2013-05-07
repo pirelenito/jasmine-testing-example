@@ -1,38 +1,32 @@
 (function (global) {
   global.Application = {
     start: function () {
-      this.investments = new Backbone.Collection();
-
-      this.router = new ApplicationRouter();
-      this.view = new ApplicationView({
-        investments: this.investments
-      });
-
-      $('.application').html(this.view.render().el);
-
-      this.investments.on('add', fetchStock, this);
-
-      this.router.on('goodInvestments', renderGoodInvestments, this)
-      this.router.on('badInvestments', renderBadInvestments, this)
-      this.router.on('allInvestments', renderAllInvestments, this)
-
-      Backbone.history.start();
+      createData.call(this);
+      createViews.call(this);
+      startRouting.call(this);
     }
   }
 
-  function renderGoodInvestments () {
-    this.view.showGoodInvestments();
+  function createData () {
+    this.investments = new Backbone.Collection();
+    this.investments.on('add', fetchStock, this);
   }
 
-  function renderBadInvestments () {
-    this.view.showBadInvestments();
+  function createViews () {
+    this.applicationView = new ApplicationView({
+      investments: this.investments
+    });
+    $('.application').html(this.applicationView.render().el);
   }
 
-  function renderAllInvestments () {
-    this.view.showAllInvestments();
+  function startRouting () {
+    this.router = new ApplicationRouter({
+      applicationView: this.applicationView
+    });
+    Backbone.history.start();
   }
 
-  function fetchStock (investments) {
-    investments.get('stock').fetch()
+  function fetchStock (investment) {
+    investment.get('stock').fetch()
   }
 })(this)
