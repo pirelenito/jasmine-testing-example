@@ -1,8 +1,8 @@
-describe("ApplicationRouter", function() {
+describe("InvestmentsRouter", function() {
   var router, callback;
 
   beforeEach(function() {
-    router = new ApplicationRouter();
+    router = new InvestmentsRouter();
     callback = sinon.spy();
   });
 

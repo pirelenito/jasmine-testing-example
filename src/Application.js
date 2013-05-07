@@ -20,7 +20,7 @@
   }
 
   function startRouting () {
-    this.router = new ApplicationRouter();
+    this.router = new InvestmentsRouter();
     this.router.on('route:goodInvestments', function () {
       this.applicationView.showGoodInvestments();
     }, this);

@@ -1,6 +1,6 @@
 (function (global, Backbone) {
 
-  var ApplicationRouter = Backbone.Router.extend({
+  var InvestmentsRouter = Backbone.Router.extend({
     routes: {
       'investments/good': 'goodInvestments',
       'investments/bad': 'badInvestments',
@@ -9,6 +9,6 @@
     }
   });
 
-  global.ApplicationRouter = ApplicationRouter;
+  global.InvestmentsRouter = InvestmentsRouter;
 
 })(this, Backbone)
