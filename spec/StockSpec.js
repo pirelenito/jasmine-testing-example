@@ -5,17 +5,33 @@ describe("Stock", function() {
     stock = new Stock({ symbol: 'YHOO' });
   });
 
-  it("should be a Backbone.Model", function() {
-    expect(stock).toEqual(jasmine.any(Backbone.Model));
+  it("should have a default share price of zero", function() {
+    expect(stock.get('sharePrice')).toEqual(0);
   });
 
-  describe("sync", function() {
-    it("should use the stock symbol as the id", function() {
-      expect(stock.idAttribute).toEqual('symbol');
+  it("should allow fetching its information from a remote server", function() {
+    expect(stock.idAttribute).toEqual('symbol');
+    expect(stock.urlRoot).toEqual('/stocks');
+  });
+
+  describe("when fetched", function() {
+    var fakeServer;
+
+    beforeEach(function() {
+      fakeServer = sinon.fakeServer.create();
+      fakeServer.respondWith('/stocks/YHOO', '{ "sharePrice": 20.13 }');
+
+      stock.fetch();
+
+      fakeServer.respond();
     });
 
-    it("should make requests to the /stocks url", function() {
-      expect(stock.urlRoot).toEqual('/stocks');
+    afterEach(function() {
+      fakeServer.restore();
+    });
+
+    it("should update its share price", function() {
+      expect(stock.get('sharePrice')).toEqual(20.13);
     });
   });
 });

@@ -2,9 +2,10 @@ describe("InvestmentView", function() {
   var view, investment, stock;
 
   beforeEach(function() {
-    investment = sinon.createStubInstance(Investment);
+    investment = new Investment();
 
-    sinon.spy(InvestmentView.prototype, 'listenTo')
+    sinon.spy(InvestmentView.prototype, 'remove');
+    sinon.spy(InvestmentView.prototype, 'render');
 
     view = new InvestmentView({
       model: investment
@@ -12,55 +13,48 @@ describe("InvestmentView", function() {
   });
 
   afterEach(function() {
-    InvestmentView.prototype.listenTo.restore();
-  });
-
-  it("should be a Backbone View", function() {
-    expect(view).toEqual(jasmine.any(Backbone.View));
-  });
-
-  it("should be a list item", function() {
-    expect(view.tagName).toEqual('li');
-  });
-
-  it("should have a 'investment' class name", function() {
-    expect(view.className).toEqual('investment');
-  });
-
-  it("should render when the model changes", function() {
-    expect(view.listenTo).toHaveBeenCalledWith(view.model, 'change', view.render, view);
-  });
-
-  it("should remove itself when the model is destroyed", function() {
-    expect(view.listenTo).toHaveBeenCalledWith(view.model, 'destroy', view.remove, view);
+    InvestmentView.prototype.remove.restore();
+    InvestmentView.prototype.render.restore();
   });
 
 
-  describe("destroy button", function() {
-    it("should bind to the click event", function() {
-      expect(_(view.events).has('click .destroy-investment')).toBeTruthy();
-    });
-
-    it("should destroy the model when clicked", function() {
-      view.events['click .destroy-investment'].call(view);
-      expect(investment.destroy).toHaveBeenCalled();
-    });
-  });
-
-
-  describe("rendering", function() {
+  describe("when the investment is destroyed", function() {
     beforeEach(function() {
-      stock = sinon.createStubInstance(Stock);
+      investment.trigger('destroy', investment);
+    });
+
+    it("should remove itself from the interface", function() {
+      expect(view.remove).toHaveBeenCalled();
+    });
+  });
+
+
+  describe("when the investment changes", function() {
+    beforeEach(function() {
+      investment.trigger('change', investment);
+    });
+
+    it("should update the interface", function() {
+      expect(view.render).toHaveBeenCalled();
+    });
+  });
+
+
+  describe("when rendering", function() {
+    beforeEach(function() {
+      stock = new Stock();
+      sinon.stub(stock, 'get');
       stock.get.withArgs('symbol').returns('YHOO');
 
+      sinon.stub(investment, 'get');
       investment.get.withArgs('roi').returns(0.1);
       investment.get.withArgs('stock').returns(stock);
 
       view.render();
     });
 
-    it("should be chainable", function() {
-      expect(view.render()).toBe(view);
+    it("should be a list item with 'investment' class", function() {
+      expect(view.$el).toBe('li.investment');
     });
 
     it("should render the stock symbol", function() {
@@ -74,5 +68,18 @@ describe("InvestmentView", function() {
     it("should render a button to destroy the investment", function() {
       expect(view.$el).toContain('button.destroy-investment');
     });
+
+
+    describe("when the destroy button is clicked", function() {
+      beforeEach(function() {
+        sinon.spy(investment, 'destroy');
+        view.$('.destroy-investment').click();
+      });
+
+      it("should destroy the model", function() {
+        expect(investment.destroy).toHaveBeenCalled();
+      });
+    });
   });
+
 });
