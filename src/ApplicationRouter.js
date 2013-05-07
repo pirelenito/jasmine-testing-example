@@ -2,27 +2,12 @@
 
   var ApplicationRouter = Backbone.Router.extend({
     routes: {
-      'goodInvestments': goodInvestments,
-      'badInvestments': badInvestments,
-      'allInvestments': allInvestments
-    },
-
-    initialize: function (options) {
-      this.applicationView = options.applicationView;
+      'investments/good': 'goodInvestments',
+      'investments/bad': 'badInvestments',
+      'investments/all': 'allInvestments',
+      'investments/:id': 'investment'
     }
   });
-
-  function goodInvestments () {
-    this.applicationView.showGoodInvestments();
-  }
-
-  function badInvestments () {
-    this.applicationView.showBadInvestments();
-  }
-
-  function allInvestments () {
-    this.applicationView.showAllInvestments();
-  }
 
   global.ApplicationRouter = ApplicationRouter;
 

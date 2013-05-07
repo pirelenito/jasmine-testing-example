@@ -20,9 +20,19 @@
   }
 
   function startRouting () {
-    this.router = new ApplicationRouter({
-      applicationView: this.applicationView
-    });
+    this.router = new ApplicationRouter();
+    this.router.on('route:goodInvestments', function () {
+      this.applicationView.showGoodInvestments();
+    }, this);
+
+    this.router.on('route:badInvestments', function () {
+      this.applicationView.showBadInvestments();
+    }, this);
+
+    this.router.on('route:allInvestments', function () {
+      this.applicationView.showAllInvestments();
+    }, this);
+
     Backbone.history.start();
   }
 
