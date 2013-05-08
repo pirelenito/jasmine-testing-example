@@ -15,7 +15,6 @@
     var ids = modelIds.call(this);
 
     if (ids.length === 0) { return ''; }
-
     return '?' + $.param({ ids: ids });
   }
 

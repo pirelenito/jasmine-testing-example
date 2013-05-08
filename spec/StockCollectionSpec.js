@@ -20,6 +20,21 @@ describe("StockCollection", function() {
   });
 
 
+  describe("given a collection", function() {
+    beforeEach(function() {
+      collection = new StockCollection();
+    });
+
+    it("should be a Backbone Collection", function() {
+      expect(collection).toEqual(jasmine.any(Backbone.Collection));
+    });
+
+    it("should be of Stocks", function() {
+      expect(collection.model).toBe(Stock);
+    });
+  });
+
+
   describe("given an empty collection", function() {
     beforeEach(function() {
       collection = new StockCollection();
