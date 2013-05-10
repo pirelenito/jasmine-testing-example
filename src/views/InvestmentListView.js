@@ -1,5 +1,8 @@
-(function (global, $, Backbone) {
-
+define([
+  'lib/backbone',
+  'views/InvestmentView'
+],
+function (Backbone, InvestmentView) {
   var InvestmentListView = Backbone.View.extend({
     initialize: function (params) {
       this._nestedViews = {};
@@ -66,6 +69,5 @@
     this.$el.append(view.render().el);
   }
 
-  global.InvestmentListView = InvestmentListView;
-
-})(this, jQuery, Backbone);
+  return InvestmentListView;
+});

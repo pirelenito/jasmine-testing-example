@@ -1,5 +1,7 @@
-(function (global, Backbone) {
-
+define([
+  'lib/backbone'
+],
+function (Backbone) {
   var Stock = Backbone.Model.extend({
     idAttribute: 'symbol',
     urlRoot: '/stocks',
@@ -9,6 +11,5 @@
     }
   });
 
-  global.Stock = Stock;
-
-})(this, Backbone);
+  return Stock;
+});

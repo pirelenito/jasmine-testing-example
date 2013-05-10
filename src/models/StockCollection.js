@@ -1,5 +1,8 @@
-(function (global, Backbone, $) {
-
+define([
+  'lib/backbone',
+  'models/Stock'
+],
+function (Backbone, Stock) {
   var StockCollection = Backbone.Collection.extend({
     model: Stock,
     url: function () {
@@ -18,6 +21,5 @@
     return '?' + $.param({ ids: ids });
   }
 
-  global.StockCollection = StockCollection;
-
-})(this, Backbone, jQuery);
+  return StockCollection;
+});

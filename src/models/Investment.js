@@ -1,5 +1,8 @@
-(function (global, Backbone) {
-
+define([
+  'lib/backbone',
+  'models/stock'
+],
+function (Backbone, Stock) {
   var Investment = Backbone.Model.extend({
     defaults: function () {
       return {
@@ -44,6 +47,5 @@
     if (!options.inner) { throw "can't set virtual attribute"; };
   }
 
-  global.Investment = Investment;
-
-})(this, Backbone);
+  return Investment;
+});

@@ -1,5 +1,10 @@
-(function (global, $) {
-
+define([
+  'lib/backbone',
+  'models/Investment',
+  'models/Stock',
+  'plugins/jquery-disable-input'
+],
+function (Backbone, Investment, Stock) {
   var NewInvestmentView = Backbone.View.extend({
     template: template,
     tagName: 'form',
@@ -88,5 +93,5 @@
     ].join('\n');
   }
 
-  global.NewInvestmentView = NewInvestmentView;
-})(this, jQuery);
+  return NewInvestmentView;
+});

@@ -2,26 +2,8 @@
 <head>
   <title>Investment Tracker</title>
 
-  <script type="text/javascript" src="lib/jquery.js"></script>
-  <script type="text/javascript" src="lib/underscore.js"></script>
-  <script type="text/javascript" src="lib/backbone.js"></script>
-
-  <script type="text/javascript" src="src/models/Investment.js"></script>
-  <script type="text/javascript" src="src/models/Stock.js"></script>
-  <script type="text/javascript" src="src/models/StockCollection.js"></script>
-  <script type="text/javascript" src="src/plugins/jquery-disable-input.js"></script>
-  <script type="text/javascript" src="src/views/NewInvestmentView.js"></script>
-  <script type="text/javascript" src="src/views/InvestmentListView.js"></script>
-  <script type="text/javascript" src="src/views/InvestmentView.js"></script>
-  <script type="text/javascript" src="src/views/ApplicationView.js"></script>
-  <script type="text/javascript" src="src/routers/InvestmentsRouter.js"></script>
-  <script type="text/javascript" src="src/Application.js"></script>
-
-  <script>
-    $(function () {
-      Application.start();
-    });
-  </script>
+  <script data-main="src/boot" src="src/require-config.js"></script>
+  <script data-main="src/boot" src="lib/require.js"></script>
 
 </head>
 <body>

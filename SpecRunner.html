@@ -6,70 +6,50 @@
 
   <link rel="shortcut icon" type="image/png" href="lib/jasmine-1.3.1/jasmine_favicon.png">
   <link rel="stylesheet" type="text/css" href="lib/jasmine-1.3.1/jasmine.css">
-  <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine.js"></script>
-  <script type="text/javascript" src="lib/jasmine-1.3.1/jasmine-html.js"></script>
-  <script type="text/javascript" src="lib/sinon.js"></script>
-  <script type="text/javascript" src="lib/jquery.js"></script>
-  <script type="text/javascript" src="lib/jasmine-jquery.js"></script>
-  <script type="text/javascript" src="lib/jasmine-sinon.js"></script>
-  <script type="text/javascript" src="lib/underscore.js"></script>
-  <script type="text/javascript" src="lib/backbone.js"></script>
 
-  <!-- include source files here... -->
-  <script type="text/javascript" src="src/models/Investment.js"></script>
-  <script type="text/javascript" src="src/models/Stock.js"></script>
-  <script type="text/javascript" src="src/models/StockCollection.js"></script>
-  <script type="text/javascript" src="src/plugins/jquery-disable-input.js"></script>
-  <script type="text/javascript" src="src/views/NewInvestmentView.js"></script>
-  <script type="text/javascript" src="src/views/InvestmentListView.js"></script>
-  <script type="text/javascript" src="src/views/InvestmentView.js"></script>
-  <script type="text/javascript" src="src/views/ApplicationView.js"></script>
-  <script type="text/javascript" src="src/routers/InvestmentsRouter.js"></script>
-  <script type="text/javascript" src="src/Application.js"></script>
-
-  <script type="text/javascript" src="spec/SpecHelper.js"></script>
-
-  <!-- include spec files here... -->
-  <script type="text/javascript" src="spec/plugins/jquery-disable-input-spec.js"></script>
-  <script type="text/javascript" src="spec/models/InvestmentSpec.js"></script>
-  <script type="text/javascript" src="spec/models/StockSpec.js"></script>
-  <script type="text/javascript" src="spec/models/StockCollectionSpec.js"></script>
-  <script type="text/javascript" src="spec/views/NewInvestmentViewSpec.js"></script>
-  <script type="text/javascript" src="spec/views/InvestmentListViewSpec.js"></script>
-  <script type="text/javascript" src="spec/views/InvestmentViewSpec.js"></script>
-  <script type="text/javascript" src="spec/routers/InvestmentsRouterSpec.js"></script>
+  <script data-main="src/boot" src="src/require-config.js"></script>
+  <script data-main="src/boot" src="lib/require.js"></script>
 
   <script type="text/javascript">
-    (function() {
+    require([
+      'lib/jquery',
+      'lib/jasmine-1.3.1/jasmine',
+      'lib/sinon',
+      'lib/jasmine-1.3.1/jasmine-html',
+      'lib/jasmine-jquery',
+      'lib/jasmine-sinon'
+    ],
+    function($, jasmine) {
       var jasmineEnv = jasmine.getEnv();
       jasmineEnv.updateInterval = 1000;
 
       var htmlReporter = new jasmine.HtmlReporter();
-
       jasmineEnv.addReporter(htmlReporter);
-
       jasmineEnv.specFilter = function(spec) {
         return htmlReporter.specFilter(spec);
       };
 
-      var currentWindowOnload = window.onload;
+      var specs = [
+        'spec/SpecHelper',
+        'spec/models/StockSpec',
+        'spec/models/InvestmentSpec',
+        'spec/models/StockCollectionSpec',
+        'spec/plugins/jquery-disable-input-spec',
+        'spec/routers/InvestmentsRouterSpec',
+        'spec/views/InvestmentListViewSpec',
+        'spec/views/InvestmentViewSpec',
+        'spec/views/NewInvestmentViewSpec'
+      ];
 
-      window.onload = function() {
-        if (currentWindowOnload) {
-          currentWindowOnload();
-        }
-        execJasmine();
-      };
-
-      function execJasmine() {
-        jasmineEnv.execute();
-      }
-
-    })();
+      $(function () {
+        require(specs, function () {
+          jasmineEnv.execute();
+        });
+      });
+    });
   </script>
 
 </head>
-
 <body>
 </body>
 </html>

@@ -1,4 +1,7 @@
-(function ($) {
+define([
+  'lib/jquery'
+],
+function ($) {
   $.fn.disableInput = function () {
     this.attr('disabled', 'disabled');
     return this;
@@ -8,4 +11,4 @@
     this.removeAttr('disabled');
     return this;
   }
-})(jQuery);
+});

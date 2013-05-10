@@ -1,5 +1,8 @@
-(function (global, Backbone, _) {
-
+define([
+  'lib/backbone',
+  'lib/underscore'
+],
+function (Backbone, _) {
   var InvestmentView = Backbone.View.extend({
     template: template,
     className: 'investment',
@@ -42,6 +45,5 @@
     '<button class="destroy-investment">destroy</button>'
   ].join('\n'));
 
-  global.InvestmentView = InvestmentView;
-
-})(this, Backbone, _);
+  return InvestmentView = InvestmentView;
+});

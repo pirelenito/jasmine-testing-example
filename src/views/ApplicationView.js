@@ -1,5 +1,9 @@
-(function (global, Backbone) {
-
+define([
+  'lib/backbone',
+  'views/NewInvestmentView',
+  'views/InvestmentListView'
+],
+function (Backbone, NewInvestmentView, InvestmentListView) {
   var ApplicationView = Backbone.View.extend({
     initialize: function (options) {
       this.investments = options.investments;
@@ -37,6 +41,5 @@
     this.investments.add(investment);
   }
 
-  global.ApplicationView = ApplicationView;
-
-})(this, Backbone)
+  return ApplicationView;
+});

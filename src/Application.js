@@ -1,5 +1,11 @@
-(function (global) {
-  global.Application = {
+define([
+  'lib/backbone',
+  'lib/jquery',
+  'views/ApplicationView',
+  'routers/InvestmentsRouter'
+],
+function (Backbone, $, ApplicationView, InvestmentsRouter) {
+  var Application = {
     start: function () {
       createData.call(this);
       createViews.call(this);
@@ -39,4 +45,6 @@
   function fetchStock (investment) {
     investment.get('stock').fetch()
   }
-})(this)
+
+  return Application;
+});
