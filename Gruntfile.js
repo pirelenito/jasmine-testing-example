@@ -9,8 +9,15 @@ module.exports = function(grunt) {
           out: "build/boot.js"
         }
       }
+    },
+
+    exec: {
+      jasmine: {
+        command: 'phantomjs run-jasmine.js SpecRunner.html'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-exec');
 };
