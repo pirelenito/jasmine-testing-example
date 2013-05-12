@@ -2,7 +2,7 @@ define([
   'lib/jasmine-1.3.1/jasmine',
   'lib/jasmine-jquery'
 ],
-function (jasine) {
+function (jasmine) {
   beforeEach(function() {
     this.addMatchers({
       toBeAGoodInvestment: function() {
