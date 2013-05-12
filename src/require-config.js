@@ -1,8 +1,6 @@
 var require = {
+  baseUrl: 'src',
   paths: {
-    // 'jquery': '../lib/jquery',
-    // 'underscore': '../lib/underscore',
-    // 'backbone': '../lib/backbone',
     'spec': '../spec',
     'lib': '../lib'
   },
