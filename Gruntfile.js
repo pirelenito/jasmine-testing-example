@@ -1,5 +1,12 @@
 module.exports = function(grunt) {
   grunt.initConfig({
+    watch: {
+      scripts: {
+        files: ['src/*.js', 'spec/*.js', 'lib/*.js'],
+        tasks: ['exec:jasmine']
+      }
+    },
+
     requirejs: {
       compile: {
         options: {
@@ -18,6 +25,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-exec');
 };
