@@ -8,8 +8,8 @@ var require = {
     'backbone': '../lib/backbone',
     'underscore': '../lib/underscore',
 
-    'jasmine': '../lib/jasmine-1.3.1/jasmine',
     'sinon': '../lib/sinon',
+    'jasmine': '../lib/jasmine-1.3.1/jasmine',
     'jasmine-html': '../lib/jasmine-1.3.1/jasmine-html',
     'jasmine-jquery': '../lib/jasmine-jquery',
     'jasmine-sinon': '../lib/jasmine-sinon'
