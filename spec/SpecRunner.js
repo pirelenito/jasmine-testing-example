@@ -1,12 +1,12 @@
 require([
   'spec/SpecIndex',
 
-  'lib/jquery',
-  'lib/jasmine-1.3.1/jasmine',
-  'lib/sinon',
-  'lib/jasmine-1.3.1/jasmine-html',
-  'lib/jasmine-jquery',
-  'lib/jasmine-sinon',
+  'jquery',
+  'jasmine',
+  'sinon',
+  'jasmine-html',
+  'jasmine-jquery',
+  'jasmine-sinon',
 
   'spec/SpecHelper'
 ],

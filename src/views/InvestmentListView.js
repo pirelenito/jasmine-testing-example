@@ -1,5 +1,5 @@
 define([
-  'lib/backbone',
+  'backbone',
   'views/InvestmentView'
 ],
 function (Backbone, InvestmentView) {

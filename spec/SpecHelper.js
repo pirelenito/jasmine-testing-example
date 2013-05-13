@@ -1,6 +1,6 @@
 define([
-  'lib/jasmine-1.3.1/jasmine',
-  'lib/jasmine-jquery'
+  'jasmine',
+  'jasmine-jquery'
 ],
 function (jasmine) {
   beforeEach(function() {

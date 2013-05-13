@@ -1,5 +1,5 @@
 define([
-  'lib/backbone',
+  'backbone',
   'models/Investment',
   'models/Stock',
   'plugins/jquery-disable-input'

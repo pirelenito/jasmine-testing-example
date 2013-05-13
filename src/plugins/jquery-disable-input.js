@@ -1,5 +1,5 @@
 define([
-  'lib/jquery'
+  'jquery'
 ],
 function ($) {
   $.fn.disableInput = function () {

@@ -1,26 +1,36 @@
 var require = {
   baseUrl: 'src',
+
   paths: {
     'spec': '../spec',
-    'lib': '../lib'
+
+    'jquery': '../lib/jquery',
+    'backbone': '../lib/backbone',
+    'underscore': '../lib/underscore',
+
+    'jasmine': '../lib/jasmine-1.3.1/jasmine',
+    'sinon': '../lib/sinon',
+    'jasmine-html': '../lib/jasmine-1.3.1/jasmine-html',
+    'jasmine-jquery': '../lib/jasmine-jquery',
+    'jasmine-sinon': '../lib/jasmine-sinon'
   },
 
   shim: {
-    'lib/jquery': {
+    'jquery': {
       exports: '$'
     },
-    'lib/backbone': {
-        deps: ['lib/underscore', 'lib/jquery'],
-        exports: 'Backbone'
+    'backbone': {
+      deps: ['underscore', 'jquery'],
+      exports: 'Backbone'
     },
-    'lib/underscore': {
-        exports: '_'
+    'underscore': {
+      exports: '_'
     },
-    'lib/jasmine-1.3.1/jasmine': {
+    'jasmine': {
       exports: 'jasmine'
     },
-    'lib/jasmine-1.3.1/jasmine-html': ['lib/jasmine-1.3.1/jasmine'],
-    'lib/jasmine-jquery': ['lib/jasmine-1.3.1/jasmine'],
-    'lib/jasmine-sinon': ['lib/jasmine-1.3.1/jasmine']
+    'jasmine-html': ['jasmine'],
+    'jasmine-jquery': ['jasmine'],
+    'jasmine-sinon': ['jasmine']
   }
 };

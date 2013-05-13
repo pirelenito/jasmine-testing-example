@@ -1,6 +1,6 @@
 define([
-  'lib/backbone',
-  'lib/jquery',
+  'backbone',
+  'jquery',
   'views/ApplicationView',
   'routers/InvestmentsRouter'
 ],

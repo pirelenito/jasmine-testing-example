@@ -1,5 +1,5 @@
 define([
-  'lib/backbone'
+  'backbone'
 ],
 function (Backbone) {
   var Stock = Backbone.Model.extend({

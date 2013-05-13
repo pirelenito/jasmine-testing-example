@@ -1,5 +1,5 @@
 define([
-  'lib/backbone',
+  'backbone',
   'views/NewInvestmentView',
   'models/Investment',
   'models/Stock'

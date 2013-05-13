@@ -1,6 +1,6 @@
 define([
-  'lib/backbone',
-  'lib/underscore'
+  'backbone',
+  'underscore'
 ],
 function (Backbone, _) {
   var InvestmentView = Backbone.View.extend({

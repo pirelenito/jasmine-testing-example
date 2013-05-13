@@ -1,5 +1,5 @@
 define([
-  'lib/backbone',
+  'backbone',
   'models/stock'
 ],
 function (Backbone, Stock) {

@@ -1,5 +1,5 @@
 define([
-  'lib/backbone',
+  'backbone',
   'routers/InvestmentsRouter'
 ],
 function (Backbone, InvestmentsRouter) {
