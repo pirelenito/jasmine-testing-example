@@ -26,6 +26,9 @@ var require = {
     'jasmine': {
       exports: 'jasmine'
     },
+    'sinon': {
+      exports: 'sinon'
+    },
     'jasmine-html': ['jasmine'],
     'jasmine-jquery': ['jasmine'],
     'jasmine-sinon': ['jasmine']
