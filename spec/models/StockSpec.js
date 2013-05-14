@@ -1,7 +1,9 @@
 define([
+  'spec/SpecHelper',
+  'sinon',
   'models/Stock'
 ],
-function (Stock) {
+function (jasmine, sinon, Stock) {
   describe("Stock", function() {
     var stock;
 

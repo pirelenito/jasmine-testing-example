@@ -1,9 +1,10 @@
 define([
+  'spec/SpecHelper',
   'backbone',
   'models/Investment',
   'models/Stock'
 ],
-function (Backbone, Investment, Stock) {
+function (jasmine, Backbone, Investment, Stock) {
   describe("Investment", function() {
     var stock;
     var investment;

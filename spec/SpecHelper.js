@@ -1,8 +1,11 @@
 define([
   'jasmine',
-  'jasmine-jquery'
+  'jasmine-jquery',
+  'jasmine-sinon'
 ],
 function (jasmine) {
+  jasmine.getFixtures().fixturesPath = 'spec/fixtures';
+
   beforeEach(function() {
     this.addMatchers({
       toBeAGoodInvestment: function() {
@@ -18,5 +21,5 @@ function (jasmine) {
     });
   });
 
-  jasmine.getFixtures().fixturesPath = 'spec/fixtures';
-})
+  return jasmine;
+});

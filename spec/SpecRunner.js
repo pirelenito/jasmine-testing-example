@@ -1,16 +1,18 @@
 require([
-  'spec/SpecIndex',
-
   'jquery',
   'jasmine',
-  'sinon',
   'jasmine-html',
-  'jasmine-jquery',
-  'jasmine-sinon',
 
-  'spec/SpecHelper'
+  'spec/models/StockSpec',
+  'spec/models/InvestmentSpec',
+  'spec/models/StockCollectionSpec',
+  'spec/plugins/jquery-disable-input-spec',
+  'spec/routers/InvestmentsRouterSpec',
+  'spec/views/InvestmentListViewSpec',
+  'spec/views/InvestmentViewSpec',
+  'spec/views/NewInvestmentViewSpec'
 ],
-function(specs, $, jasmine) {
+function($, jasmine) {
   var jasmineEnv = jasmine.getEnv();
   jasmineEnv.updateInterval = 1000;
 
@@ -20,9 +22,5 @@ function(specs, $, jasmine) {
     return htmlReporter.specFilter(spec);
   };
 
-  $(function () {
-    require(specs, function () {
-      jasmineEnv.execute();
-    });
-  });
+  $(function () { jasmine.getEnv().execute(); });
 });

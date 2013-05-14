@@ -1,7 +1,8 @@
 define([
+  'spec/SpecHelper',
   'plugins/jquery-disable-input'
 ],
-function () {
+function (jasmine, $) {
   describe("jquery.disable", function() {
     var $input;
 

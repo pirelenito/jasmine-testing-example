@@ -1,8 +1,10 @@
 define([
+  'spec/SpecHelper',
+  'sinon',
   'backbone',
   'routers/InvestmentsRouter'
 ],
-function (Backbone, InvestmentsRouter) {
+function (jasmine, sinon, Backbone, InvestmentsRouter) {
   describe("InvestmentsRouter", function() {
     var router, observer;
 

@@ -1,10 +1,11 @@
 define([
+  'spec/SpecHelper',
   'backbone',
   'views/NewInvestmentView',
   'models/Investment',
   'models/Stock'
 ],
-function (Backbone, NewInvestmentView) {
+function (jasmine, Backbone, NewInvestmentView) {
   describe("NewInvestmentView", function() {
     var view;
 
