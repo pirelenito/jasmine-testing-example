@@ -11,4 +11,6 @@ function ($) {
     this.removeAttr('disabled');
     return this;
   }
+
+  return $;
 });
