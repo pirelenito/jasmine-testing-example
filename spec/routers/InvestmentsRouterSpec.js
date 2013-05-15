@@ -1,16 +1,15 @@
 define([
   'spec/SpecHelper',
-  'sinon',
   'backbone',
   'routers/InvestmentsRouter'
 ],
-function (jasmine, sinon, Backbone, InvestmentsRouter) {
+function (jasmine, Backbone, InvestmentsRouter) {
   describe("InvestmentsRouter", function() {
     var router, observer;
 
     beforeEach(function() {
       router = new InvestmentsRouter();
-      observer = sinon.spy();
+      observer = jasmine.createSpy();
     });
 
     it("should be a Backbone Router", function() {
