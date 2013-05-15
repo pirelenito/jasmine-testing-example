@@ -1,9 +1,8 @@
 define([
   'spec/SpecHelper',
-  'sinon',
   'models/Stock'
 ],
-function (jasmine, sinon, Stock) {
+function (jasmine, Stock) {
   describe("Stock", function() {
     var stock;
 
@@ -18,27 +17,6 @@ function (jasmine, sinon, Stock) {
     it("should allow fetching its information from a remote server", function() {
       expect(stock.idAttribute).toEqual('symbol');
       expect(stock.urlRoot).toEqual('/stocks');
-    });
-
-    describe("when fetched", function() {
-      var fakeServer;
-
-      beforeEach(function() {
-        fakeServer = sinon.fakeServer.create();
-        fakeServer.respondWith('/stocks/YHOO', '{ "sharePrice": 20.13 }');
-
-        stock.fetch();
-
-        fakeServer.respond();
-      });
-
-      afterEach(function() {
-        fakeServer.restore();
-      });
-
-      it("should update its share price", function() {
-        expect(stock.get('sharePrice')).toEqual(20.13);
-      });
     });
   });
 });
