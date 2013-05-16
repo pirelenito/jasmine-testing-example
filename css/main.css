@@ -1,0 +1,87 @@
+@import url(http://fonts.googleapis.com/css?family=Merriweather+Sans);
+@import 'normalize.css';
+
+body {
+  background: #2c3e50;
+  color: white;
+  font-family: 'Merriweather Sans', sans-serif;
+  padding: 1em;
+}
+
+label {
+  display: block;
+  float: left;
+  margin-right: 0.5em;
+  width: 10em;
+}
+
+input[type=text], input[type=number] {
+  border: none;
+  background: white;
+  padding: 0.5em;
+  display: block;
+  width: 100%;
+  margin-top: 0.5em;
+}
+
+input[type=submit] {
+  border: none;
+  background: #e67e22;
+  color: white;
+  padding: 0.5em;
+  margin-top: 1.75em;
+}
+
+input[type=submit]:disabled {
+  opacity: 0.5;
+}
+
+form {
+  overflow: hidden;
+}
+
+a {
+  color: #e67e22;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+nav {
+  font-size: 1.5em;
+}
+
+.investment {
+  float: left;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
+  width: 10em;
+  list-style: none;
+}
+
+.investment h1 {
+  margin: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.investment p {
+  text-align: center;
+}
+
+.investment button {
+  width: 100%;
+  border: none;
+  background: black;
+  color: white;
+}
+
+.good-investment {
+  background: #27ae60;
+}
+
+.bad-investment {
+  background: #e74c3c;
+}
