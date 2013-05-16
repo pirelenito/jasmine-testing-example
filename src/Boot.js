@@ -1,5 +1,5 @@
 require([
-  'application'
+  'Application'
 ],
 function (Application) {
   Application.start();
