@@ -70,8 +70,8 @@ function (jasmine, sinon, Backbone, InvestmentView, Investment, Stock) {
         expect(view.$el).toContainHtml('YHOO');
       });
 
-      it("should render the return of investment as a percentage", function() {
-        expect(view.$el).toContainHtml('10%');
+      it("should render the return of investment as a percentage with precision of two decimal cases", function() {
+        expect(view.$el).toContainHtml('10.00%');
       });
 
       it("should render a button to destroy the investment", function() {

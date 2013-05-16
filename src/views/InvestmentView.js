@@ -34,7 +34,7 @@ function (Backbone, _) {
   });
 
   function formatedRoi () {
-    return (this.model.get('roi') * 100) + '%'
+    return (this.model.get('roi') * 100).toFixed(2) + '%'
   }
 
   function destroy () {
