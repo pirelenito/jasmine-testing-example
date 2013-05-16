@@ -52,8 +52,8 @@ function (Backbone, _) {
   }
 
   var template = _.template([
-    '<h1><%= symbol %><h1>',
-    '<p><%= roi %><p>',
+    '<h1><%= symbol %></h1>',
+    '<p><%= roi %></p>',
     '<button class="destroy-investment">destroy</button>'
   ].join('\n'));
 
