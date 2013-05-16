@@ -79,6 +79,30 @@ function (jasmine, sinon, Backbone, InvestmentView, Investment, Stock) {
       });
 
 
+      describe("a bad investment", function() {
+        beforeEach(function() {
+          investment.get.withArgs('isGood').returns(false);
+          view.render();
+        });
+
+        it("should add a css class of 'bad-investment'", function() {
+          expect(view.$el).toBe('.bad-investment');
+        });
+      });
+
+
+      describe("a good investment", function() {
+        beforeEach(function() {
+          investment.get.withArgs('isGood').returns(true);
+          view.render();
+        });
+
+        it("should add a css class of 'good-investment'", function() {
+          expect(view.$el).toBe('.good-investment');
+        });
+      });
+
+
       describe("when the destroy button is clicked", function() {
         beforeEach(function() {
           sinon.spy(investment, 'destroy');

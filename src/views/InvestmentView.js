@@ -22,6 +22,8 @@ function (Backbone, _) {
         roi: formatedRoi.call(this)
       }));
 
+      addClass.call(this);
+
       return this;
     },
 
@@ -37,6 +39,16 @@ function (Backbone, _) {
 
   function destroy () {
     this.model.destroy();
+  }
+
+  function addClass () {
+    if (this.model.get('isGood')) {
+      this.$el.addClass('good-investment');
+      this.$el.removeClass('bad-investment');
+    } else {
+      this.$el.removeClass('good-investment');
+      this.$el.addClass('bad-investment');
+    };
   }
 
   var template = _.template([
