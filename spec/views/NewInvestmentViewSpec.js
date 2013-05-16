@@ -47,13 +47,23 @@ function (jasmine, Backbone, NewInvestmentView) {
 
     describe("with its inputs correctly filled", function() {
       beforeEach(function() {
-        view.$el.find('.new-investment-stock-symbol').val('YHOO').trigger('change');
-        view.$el.find('.new-investment-shares').val(100).trigger('change');
-        view.$el.find('.new-investment-share-price').val(20).trigger('change');
+        view.$el.find('.new-investment-stock-symbol').val('YHOO');
+        view.$el.find('.new-investment-shares').val(100);
+        view.$el.find('.new-investment-share-price').val(20);
       });
 
-      it("should allow to add", function() {
-        expect(view.$el.find('input[type=submit]')).not.toBeDisabled();
+      describe("should enable the add button", function() {
+        it("on any input 'change' event", function() {
+          view.$el.find('.new-investment-stock-symbol').trigger('change');
+        });
+
+        it("on any input 'keyup' event", function() {
+          view.$el.find('.new-investment-stock-symbol').trigger('keyup');
+        });
+
+        afterEach(function() {
+          expect(view.$el.find('input[type=submit]')).not.toBeDisabled();
+        });
       });
 
       it("should be able to create an investment from the inputs", function() {
@@ -63,10 +73,11 @@ function (jasmine, Backbone, NewInvestmentView) {
         expect(newInvestment.get('sharePrice')).toEqual(20);
       });
 
-      describe("when its add button is clicked", function() {
+      describe("when its enabled add button is clicked", function() {
         beforeEach(function() {
           spyOnEvent(view.$el, 'submit');
 
+          view.$el.find('input[type=submit]').enableInput();
           view.$el.find('input[type=submit]').click();
         });
 

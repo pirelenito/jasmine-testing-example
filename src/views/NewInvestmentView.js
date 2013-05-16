@@ -10,7 +10,8 @@ function (Backbone, Investment, Stock) {
     tagName: 'form',
     events: {
       'submit': submit,
-      'change input': updateAddButton
+      'change input': updateAddButton,
+      'keyup input': updateAddButton
     },
 
     render: function () {
