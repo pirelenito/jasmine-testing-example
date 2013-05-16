@@ -54,7 +54,7 @@ function (Backbone, _) {
   var template = _.template([
     '<h1><%= symbol %></h1>',
     '<p><%= roi %></p>',
-    '<button class="destroy-investment">destroy</button>'
+    '<button class="destroy-investment">remove</button>'
   ].join('\n'));
 
   return InvestmentView = InvestmentView;
