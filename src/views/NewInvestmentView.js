@@ -79,7 +79,7 @@ function (Backbone, Investment, Stock) {
       '<h1>New investment</h1>',
       '<label>',
       '  Symbol:',
-      '  <input type="text" class="new-investment-stock-symbol" name="stockSymbol" value="">',
+      '  <input type="text" class="new-investment-stock-symbol" name="stockSymbol" value="" maxlength="4">',
       '</label>',
       '<label>',
       '  Shares:',

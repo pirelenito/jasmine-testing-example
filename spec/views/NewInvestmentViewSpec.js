@@ -31,6 +31,10 @@ function (jasmine, Backbone, NewInvestmentView) {
       expect(view.$el.find('.new-investment-stock-symbol')).toBe('input[type=text]');
     });
 
+    it("should limit the stock symbol to four characters", function() {
+      expect(view.$el.find('.new-investment-stock-symbol')).toHaveAttr('maxlength', 4);
+    });
+
     it("should allow the input of shares", function() {
       expect(view.$el).toContainHtml('<input type="number" class="new-investment-shares" name="shares" value="0">');
     });
