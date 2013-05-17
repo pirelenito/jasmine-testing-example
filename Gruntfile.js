@@ -30,4 +30,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-exec');
 
   grunt.registerTask('spec', ['exec:jasmine']);
+  grunt.registerTask('default', ['spec', 'requirejs']);
 };
