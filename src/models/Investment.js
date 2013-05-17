@@ -1,6 +1,6 @@
 define([
   'backbone',
-  'models/stock'
+  'models/Stock'
 ],
 function (Backbone, Stock) {
   var Investment = Backbone.Model.extend({
