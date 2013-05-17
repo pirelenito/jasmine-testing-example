@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['src/**/*.js', 'spec/**/*.js', 'lib/**/*.js'],
-        tasks: ['exec:jasmine']
+        tasks: ['jshint', 'exec:jasmine']
       }
     },
 
@@ -18,6 +18,10 @@ module.exports = function(grunt) {
       }
     },
 
+    jshint: {
+      all: ['src/**/*.js', 'spec/**/*.js']
+    },
+
     exec: {
       jasmine: {
         command: 'phantomjs run-jasmine.js SpecRunner.html'
@@ -27,8 +31,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-exec');
 
   grunt.registerTask('spec', ['exec:jasmine']);
-  grunt.registerTask('default', ['spec', 'requirejs']);
+  grunt.registerTask('default', ['jshint', 'spec', 'requirejs']);
 };
