@@ -7,7 +7,7 @@ function (Backbone, Stock) {
     defaults: function () {
       return {
         'stock': new Stock()
-      }
+      };
     },
 
     initialize: function () {
@@ -43,8 +43,9 @@ function (Backbone, Stock) {
     this.set('cost', this.get('shares') * this.get('sharePrice'), { inner: true });
   }
 
-  function preventSetingVirtualAttributes (_, _, options) {
-    if (!options.inner) { throw "can't set virtual attribute"; };
+  function preventSetingVirtualAttributes () {
+    var options = arguments[2];
+    if (!options.inner) { throw "can't set virtual attribute"; }
   }
 
   return Investment;

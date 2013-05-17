@@ -7,7 +7,7 @@ function (jasmine, $) {
     var $input;
 
     beforeEach(function() {
-      setFixtures('<input type="text" name="add" value="Add">')
+      setFixtures('<input type="text" name="add" value="Add">');
       $input = $('input[type=text]');
     });
 
@@ -25,7 +25,7 @@ function (jasmine, $) {
     var $input;
 
     beforeEach(function() {
-      setFixtures('<input type="text" name="add" value="Add" disabled="disabled">')
+      setFixtures('<input type="text" name="add" value="Add" disabled="disabled">');
       $input = $('input[type=text]');
     });
 

@@ -28,13 +28,17 @@ function (Backbone, _) {
     },
 
     setVisible: function (value) {
-      value ? this.$el.show() : this.$el.hide();
+      if (value) {
+        this.$el.show();
+      } else {
+        this.$el.hide();
+      }
       return this;
     }
   });
 
   function formatedRoi () {
-    return (this.model.get('roi') * 100).toFixed(2) + '%'
+    return (this.model.get('roi') * 100).toFixed(2) + '%';
   }
 
   function destroy () {
@@ -48,7 +52,7 @@ function (Backbone, _) {
     } else {
       this.$el.removeClass('good-investment');
       this.$el.addClass('bad-investment');
-    };
+    }
   }
 
   var template = _.template([
@@ -57,5 +61,5 @@ function (Backbone, _) {
     '<button class="destroy-investment">remove</button>'
   ].join('\n'));
 
-  return InvestmentView = InvestmentView;
+  return InvestmentView;
 });

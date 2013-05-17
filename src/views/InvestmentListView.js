@@ -32,21 +32,21 @@ function (Backbone, InvestmentView) {
 
     showGoodInvestments: function () {
       this.collection.each(function (model) {
-        getView.call(this, model).setVisible(model.get('isGood'))
+        getView.call(this, model).setVisible(model.get('isGood'));
       }, this);
       return this;
     },
 
     showBadInvestments: function () {
       this.collection.each(function (model) {
-        getView.call(this, model).setVisible(!model.get('isGood'))
+        getView.call(this, model).setVisible(!model.get('isGood'));
       }, this);
       return this;
     },
 
     showAllInvestments: function () {
       this.collection.each(function (model) {
-        getView.call(this, model).setVisible(true)
+        getView.call(this, model).setVisible(true);
       }, this);
       return this;
     }

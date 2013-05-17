@@ -23,7 +23,7 @@ function (jasmine, Backbone, InvestmentListView, Investment, Stock) {
 
         view = new InvestmentListView({
           collection: collection
-        })
+        });
       });
 
       describe("when rendering", function() {
@@ -50,14 +50,14 @@ function (jasmine, Backbone, InvestmentListView, Investment, Stock) {
 
         view = new InvestmentListView({
           collection: collection
-        })
+        });
       });
 
       describe("to a rendered list of investments", function() {
         beforeEach(function() {
           view.render();
 
-          collection.add(investment)
+          collection.add(investment);
         });
 
         it("should render the investment", function() {
@@ -67,7 +67,7 @@ function (jasmine, Backbone, InvestmentListView, Investment, Stock) {
 
       describe("to a not rendered list of investments", function() {
         beforeEach(function() {
-          collection.add(investment)
+          collection.add(investment);
         });
 
         it("should not render the investment", function() {
@@ -82,20 +82,20 @@ function (jasmine, Backbone, InvestmentListView, Investment, Stock) {
         investment = new Investment({
           sharePrice: 11,
           stock: new Stock({ symbol: 'YHOO', sharePrice: 10})
-        })
+        });
 
         collection = new Backbone.Collection([investment]);
 
         view = new InvestmentListView({
           collection: collection
-        })
+        });
       });
 
       describe("to a rendered list of investments", function() {
         beforeEach(function() {
           view.render();
 
-          collection.remove(investment)
+          collection.remove(investment);
         });
 
         it("should remove the investment", function() {
@@ -105,7 +105,7 @@ function (jasmine, Backbone, InvestmentListView, Investment, Stock) {
 
       describe("to a not rendered list of investments", function() {
         beforeEach(function() {
-          collection.remove(investment)
+          collection.remove(investment);
         });
 
         it("should not render the investment", function() {

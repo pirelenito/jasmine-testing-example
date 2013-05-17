@@ -11,7 +11,7 @@ function (Backbone, $, ApplicationView, InvestmentsRouter) {
       createViews.call(this);
       startRouting.call(this);
     }
-  }
+  };
 
   function createData () {
     this.investments = new Backbone.Collection();
@@ -43,7 +43,7 @@ function (Backbone, $, ApplicationView, InvestmentsRouter) {
   }
 
   function fetchStock (investment) {
-    investment.get('stock').fetch()
+    investment.get('stock').fetch();
   }
 
   return Application;

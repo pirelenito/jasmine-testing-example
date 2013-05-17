@@ -12,7 +12,7 @@ function (jasmine, Backbone, NewInvestmentView) {
     beforeEach(function() {
       view = new NewInvestmentView({
         id: 'new-investment'
-      })
+      });
 
       setFixtures(view.$el);
 

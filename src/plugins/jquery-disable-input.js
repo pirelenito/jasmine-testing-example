@@ -10,7 +10,7 @@ function ($) {
   $.fn.enableInput = function () {
     this.removeAttr('disabled');
     return this;
-  }
+  };
 
   return $;
 });

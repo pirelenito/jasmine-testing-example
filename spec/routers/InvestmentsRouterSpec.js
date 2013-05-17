@@ -19,7 +19,7 @@ function (jasmine, Backbone, InvestmentsRouter) {
     it("should route '/investments/good'", function() {
       router.on('route:goodInvestments', observer);
 
-      Backbone.history.loadUrl('/investments/good')
+      Backbone.history.loadUrl('/investments/good');
 
       expect(observer).toHaveBeenCalled();
     });
@@ -27,7 +27,7 @@ function (jasmine, Backbone, InvestmentsRouter) {
     it("should route '/investments/bad'", function() {
       router.on('route:badInvestments', observer);
 
-      Backbone.history.loadUrl('/investments/bad')
+      Backbone.history.loadUrl('/investments/bad');
 
       expect(observer).toHaveBeenCalled();
     });
@@ -35,7 +35,7 @@ function (jasmine, Backbone, InvestmentsRouter) {
     it("should route '/investments/all'", function() {
       router.on('route:allInvestments', observer);
 
-      Backbone.history.loadUrl('/investments/all')
+      Backbone.history.loadUrl('/investments/all');
 
       expect(observer).toHaveBeenCalled();
     });
