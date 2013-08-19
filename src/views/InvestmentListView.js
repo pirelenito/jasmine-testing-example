@@ -1,8 +1,10 @@
 define([
   'backbone',
+  'underscore',
+  'jquery',
   'views/InvestmentView'
 ],
-function (Backbone, InvestmentView) {
+function (Backbone, _, $, InvestmentView) {
   var InvestmentListView = Backbone.View.extend({
     initialize: function (params) {
       this._nestedViews = {};

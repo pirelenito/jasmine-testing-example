@@ -9,8 +9,10 @@ function (jasmine, Backbone, InvestmentListView, Investment, Stock) {
   describe("InvestmentListView", function() {
 
     describe("given two investments", function() {
+      var view;
+
       beforeEach(function() {
-        collection = new Backbone.Collection([
+        var collection = new Backbone.Collection([
           {
             sharePrice: 11,
             stock: new Stock({ symbol: 'YHOO', sharePrice: 10})
@@ -40,6 +42,8 @@ function (jasmine, Backbone, InvestmentListView, Investment, Stock) {
 
 
     describe("when adding investments", function() {
+      var view, investment, collection;
+
       beforeEach(function() {
         collection = new Backbone.Collection();
 
@@ -78,6 +82,8 @@ function (jasmine, Backbone, InvestmentListView, Investment, Stock) {
 
 
     describe("when removing investments", function() {
+      var view, investment, collection;
+
       beforeEach(function() {
         investment = new Investment({
           sharePrice: 11,

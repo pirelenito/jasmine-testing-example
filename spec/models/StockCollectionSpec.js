@@ -2,10 +2,11 @@ define([
   'spec/SpecHelper',
   'sinon',
   'backbone',
+  'jquery',
   'models/StockCollection',
   'models/Stock'
 ],
-function (jasmine, sinon, Backbone, StockCollection, Stock) {
+function (jasmine, sinon, Backbone, $, StockCollection, Stock) {
   describe("StockCollection", function() {
     var collection, fakeServer;
 

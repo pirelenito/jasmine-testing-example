@@ -1,8 +1,9 @@
 define([
   'backbone',
+  'jquery',
   'models/Stock'
 ],
-function (Backbone, Stock) {
+function (Backbone, $, Stock) {
   var StockCollection = Backbone.Collection.extend({
     model: Stock,
     url: function () {
