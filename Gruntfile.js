@@ -17,16 +17,33 @@ module.exports = function(grunt) {
           mainConfigFile: 'src/RequireConfig.js',
           baseUrl: "src",
           name: "Boot",
-          out: "build/boot.js"
+          out: "build/src/boot.js"
         }
       }
     },
 
+    copy: {
+      build: {
+        files: [
+          {expand: true, src: ['src/RequireConfig.js'], dest: 'build'},
+          {expand: true, src: ['lib/require.js'], dest: 'build'},
+          {expand: true, src: ['css/*.css'], dest: 'build'},
+          {expand: true, src: ['index.html'], dest: 'build'}
+        ]
+      }
+    },
+
     jshint: {
+      options: {
+        jshintrc: '.jshintrc'
+      },
       all: ['src/**/*.js', 'spec/**/*.js']
     },
 
     exec: {
+      clean: {
+        command: 'rm -rf build'
+      },
       jasmine: {
         command: 'phantomjs run-jasmine.js http://0.0.0.0:8000/SpecRunner.html'
       }
@@ -37,8 +54,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-exec');
 
-  grunt.registerTask('spec', ['connect', 'exec:jasmine']);
-  grunt.registerTask('default', ['jshint', 'spec', 'requirejs']);
+  grunt.registerTask('spec', ['jshint', 'connect', 'exec:jasmine']);
+  grunt.registerTask('build', ['exec:clean', 'copy:build', 'requirejs']);
+  grunt.registerTask('default', ['spec', 'build']);
 };
