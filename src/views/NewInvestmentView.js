@@ -17,6 +17,7 @@ function (Backbone, Investment, Stock) {
     render: function () {
       this.$el.html(this.template());
       $stockSymbol.call(this).focus();
+      updateAddButton.call(this);
       return this;
     },
 
@@ -90,7 +91,7 @@ function (Backbone, Investment, Stock) {
       '  Share price:',
       '  <input type="number" class="new-investment-share-price" name="sharePrice" value="0">',
       '</label>',
-      '<input type="submit" name="add" value="Add" disabled="disabled">'
+      '<input type="submit" name="add" value="Add">'
     ].join('\n');
   }
 
